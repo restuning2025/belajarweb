@@ -2,57 +2,49 @@ export const subjects = [
   {
     id: 'bahasa-indonesia',
     name: 'Bahasa Indonesia',
-    color: 'bg-blue-500',
-    icon: '📚',
-    description: 'Belajar membaca dan menulis dengan menyenangkan'
+    description: 'Mata pelajaran Bahasa Indonesia untuk kelas 2 SD semester 2',
+    icon: '📚'
   },
   {
     id: 'matematika',
     name: 'Matematika',
-    color: 'bg-red-500',
-    icon: '🔢',
-    description: 'Berhitung dan memecahkan masalah matematika'
+    description: 'Mata pelajaran Matematika untuk kelas 2 SD semester 2',
+    icon: '🔢'
   },
   {
     id: 'ppkn',
     name: 'PPKn',
-    color: 'bg-yellow-500',
-    icon: '🏛️',
-    description: 'Belajar tentang Pancasila dan kewarganegaraan'
+    description: 'Mata pelajaran Pendidikan Pancasila dan Kewarganegaraan untuk kelas 2 SD semester 2',
+    icon: '🏛️'
   },
   {
     id: 'pjok',
     name: 'PJOK',
-    color: 'bg-green-500',
-    icon: '⚽',
-    description: 'Pendidikan jasmani dan olahraga'
+    description: 'Mata pelajaran Pendidikan Jasmani, Olahraga, dan Kesehatan untuk kelas 2 SD semester 2',
+    icon: '⚽'
   },
   {
     id: 'sbdp',
     name: 'SBdP',
-    color: 'bg-purple-500',
-    icon: '🎨',
-    description: 'Seni Budaya dan Prakarya'
+    description: 'Mata pelajaran Seni Budaya dan Prakarya untuk kelas 2 SD semester 2',
+    icon: '🎨'
   },
   {
     id: 'agama',
-    name: 'Pendidikan Agama',
-    color: 'bg-teal-500',
-    icon: '🕌',
-    description: 'Belajar tentang agama dan moral'
+    name: 'Pendidikan Agama Islam',
+    description: 'Mata pelajaran Pendidikan Agama Islam untuk kelas 2 SD semester 2',
+    icon: '🕌'
   },
   {
     id: 'bahasa-inggris',
     name: 'Bahasa Inggris',
-    color: 'bg-pink-500',
-    icon: '🌍',
-    description: 'Belajar bahasa Inggris dasar'
+    description: 'Mata pelajaran Bahasa Inggris untuk kelas 2 SD semester 2',
+    icon: '🌎'
   },
   {
     id: 'sains',
-    name: 'Sains',
-    color: 'bg-indigo-500',
-    icon: '🔬',
-    description: 'Belajar tentang alam dan lingkungan sekitar'
+    name: 'Sains (IPA)',
+    description: 'Mata pelajaran Sains untuk kelas 2 SD semester 2',
+    icon: '🔬'
   }
 ];

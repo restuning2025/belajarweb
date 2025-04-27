@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
+import { getCurrentUser, saveQuizResult } from '../../utils/userManager';
 import { subjects } from '../../data/subjects';
 import { questions as bahasaIndonesiaQuestions } from '../../data/questions/bahasa-indonesia';
 import { questions as matematikaQuestions } from '../../data/questions/matematika';
@@ -19,6 +20,16 @@ export default function Quiz() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const currentUser = getCurrentUser();
+    if (!currentUser) {
+      router.push('/auth');
+    } else {
+      setUser(currentUser);
+    }
+  }, []);
 
   // Wait for router query to be available
   if (!subjectId) {
@@ -90,6 +101,10 @@ export default function Quiz() {
 
   if (showResults) {
     const score = calculateScore();
+    const correctAnswers = Object.keys(answers).filter(
+      key => answers[key] === questions[key].correctAnswer
+    ).length;
+    saveQuizResult(subjectId, score, answers, correctAnswers, questions.length);
     return (
       <div className="min-h-screen bg-[var(--background)] py-8">
         <Head>
