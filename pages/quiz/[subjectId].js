@@ -10,15 +10,22 @@ import { questions as pjokQuestions } from '../../data/questions/pjok';
 import { questions as sbdpQuestions } from '../../data/questions/sbdp';
 import { questions as agamaQuestions } from '../../data/questions/agama';
 import { questions as bahasaInggrisQuestions } from '../../data/questions/bahasa-inggris';
+import { questions as sainsQuestions } from '../../data/questions/sains';
 
 export default function Quiz() {
   const router = useRouter();
   const { subjectId } = router.query;
-  const subject = subjects.find((s) => s.id === subjectId);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
+
+  // Wait for router query to be available
+  if (!subjectId) {
+    return <div className="min-h-screen bg-[var(--background)] py-8 flex items-center justify-center">Loading...</div>;
+  }
+
+  const subject = subjects.find((s) => s.id === subjectId);
 
   // Get questions based on subject
   const getQuestions = (subjectId) => {
@@ -37,6 +44,8 @@ export default function Quiz() {
         return agamaQuestions;
       case 'bahasa-inggris':
         return bahasaInggrisQuestions;
+      case 'sains':
+        return sainsQuestions;
       default:
         return [];
     }
@@ -45,7 +54,11 @@ export default function Quiz() {
   const questions = getQuestions(subjectId);
 
   if (!subject) {
-    return <div>Loading...</div>;
+    return <div className="min-h-screen bg-[var(--background)] py-8 flex items-center justify-center">Mata pelajaran tidak ditemukan</div>;
+  }
+
+  if (!questions || questions.length === 0) {
+    return <div className="min-h-screen bg-[var(--background)] py-8 flex items-center justify-center">Pertanyaan tidak tersedia</div>;
   }
 
   const currentQuestion = questions[currentQuestionIndex];

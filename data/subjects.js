@@ -47,5 +47,12 @@ export const subjects = [
     color: 'bg-pink-500',
     icon: '🌍',
     description: 'Belajar bahasa Inggris dasar'
+  },
+  {
+    id: 'sains',
+    name: 'Sains',
+    color: 'bg-indigo-500',
+    icon: '🔬',
+    description: 'Belajar tentang alam dan lingkungan sekitar'
   }
 ];
