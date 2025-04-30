@@ -7,8 +7,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     subject: SUBJECTS.BILINGUAL.MATH.id,
     topic: SUBJECTS.BILINGUAL.MATH.topics.TIME,
-    question: 'What time does this analog clock show?',
-    imageUrl: '/images/clock_0845.svg',
+    question: 'If the minute hand points to 9 and the hour hand is between 8 and 9, what time is it?',
     options: [
       'Eight forty-five',
       'Eight fifteen',
@@ -16,7 +15,7 @@ export const questions = [
       'Quarter to nine'
     ],
     correctAnswer: [0, 3], // Both answers are acceptable
-    explanation: 'The clock shows 8:45, which can be read as "eight forty-five" or "quarter to nine"'
+    explanation: 'When the minute hand points to 9, it means 45 minutes. With the hour hand between 8 and 9, the time is 8:45, which can be expressed as "eight forty-five" or "quarter to nine"'
   },
 
   {
@@ -69,16 +68,15 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     subject: SUBJECTS.BILINGUAL.MATH.id,
     topic: SUBJECTS.BILINGUAL.MATH.topics.FRACTIONS,
-    question: 'Which picture shows 1/4 (one-fourth) of the circle shaded?',
-    imageUrl: '/images/fraction_circles.svg',
+    question: 'If a circle is divided into 4 equal parts and 1 part is colored, what fraction of the circle is colored?',
     options: [
-      'Circle A (one quarter shaded)',
-      'Circle B (one half shaded)',
-      'Circle C (three quarters shaded)',
-      'Circle D (whole circle shaded)'
+      'One-fourth (1/4)',
+      'One-half (1/2)',
+      'Three-fourths (3/4)',
+      'One whole (1)'
     ],
     correctAnswer: 0,
-    explanation: 'One-fourth (1/4) means the circle is divided into 4 equal parts and one part is shaded'
+    explanation: 'When a circle is divided into 4 equal parts and 1 part is colored, that represents 1 out of 4 parts or one-fourth (1/4)'
   },
 
   {
@@ -508,7 +506,7 @@ export const questions = [
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.BILINGUAL.MATH.id,
     topic: SUBJECTS.BILINGUAL.MATH.topics.FRACTIONS,
-    question: 'What fraction of the square is shaded?',
+    question: 'A square is divided into 4 equal parts. If 3 parts are colored red and 1 part is colored blue, what fraction of the square is red?',
     options: [
       'One fourth (1/4)',
       'One half (1/2)',
@@ -516,7 +514,7 @@ export const questions = [
       'One whole (1)'
     ],
     correctAnswer: 2,
-    explanation: 'Three parts out of four equal parts are shaded, which represents 3/4 (three-fourths)'
+    explanation: 'When a square is divided into 4 equal parts and 3 parts are colored red, the red portion represents 3 out of 4 parts or three-fourths (3/4)'
   },
 
   {
