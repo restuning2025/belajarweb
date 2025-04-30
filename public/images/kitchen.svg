@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Room background -->
+  <rect x="50" y="50" width="300" height="200" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+  
+  <!-- Floor -->
+  <rect x="50" y="200" width="300" height="50" fill="#d2b48c" stroke="#333" stroke-width="1"/>
+  
+  <!-- Cabinets -->
+  <rect x="50" y="50" width="300" height="50" fill="#8b4513" stroke="#333" stroke-width="2"/>
+  
+  <!-- Counter -->
+  <rect x="50" y="100" width="300" height="20" fill="#f0e68c" stroke="#333" stroke-width="2"/>
+  
+  <!-- Sink -->
+  <rect x="100" y="110" width="60" height="40" rx="5" fill="#c0c0c0" stroke="#333" stroke-width="2"/>
+  <circle cx="130" cy="130" r="10" fill="#a9a9a9" stroke="#333" stroke-width="1"/>
+  
+  <!-- Stove -->
+  <rect x="200" y="110" width="80" height="40" fill="#000" stroke="#333" stroke-width="2"/>
+  <circle cx="220" cy="120" r="10" fill="#c0c0c0" stroke="#333" stroke-width="1"/>
+  <circle cx="260" cy="120" r="10" fill="#c0c0c0" stroke="#333" stroke-width="1"/>
+  <circle cx="220" cy="140" r="10" fill="#c0c0c0" stroke="#333" stroke-width="1"/>
+  <circle cx="260" cy="140" r="10" fill="#c0c0c0" stroke="#333" stroke-width="1"/>
+  
+  <!-- Refrigerator -->
+  <rect x="300" y="100" width="40" height="100" fill="#f8f8ff" stroke="#333" stroke-width="2"/>
+  <rect x="305" y="150" width="30" height="1" fill="#333"/>
+  <circle cx="310" cy="120" r="3" fill="#333"/>
+  
+  <!-- Table with chairs -->
+  <rect x="100" y="160" width="80" height="40" fill="#8b4513" stroke="#333" stroke-width="2"/>
+  
+  <!-- Chair 1 -->
+  <rect x="80" y="160" width="20" height="20" fill="#a0522d" stroke="#333" stroke-width="1"/>
+  <!-- Chair 2 -->
+  <rect x="180" y="160" width="20" height="20" fill="#a0522d" stroke="#333" stroke-width="1"/>
+  <!-- Chair 3 -->
+  <rect x="130" y="200" width="20" height="20" fill="#a0522d" stroke="#333" stroke-width="1"/>
+  
+  <!-- Windows -->
+  <rect x="70" y="60" width="40" height="30" fill="#add8e6" stroke="#333" stroke-width="1"/>
+  <rect x="250" y="60" width="40" height="30" fill="#add8e6" stroke="#333" stroke-width="1"/>
+  
+  <text x="130" y="180" font-family="Arial" font-size="10" text-anchor="middle">Table</text>
+  <text x="320" y="140" font-family="Arial" font-size="8" text-anchor="middle">Fridge</text>
+  <text x="240" y="130" font-family="Arial" font-size="10" text-anchor="middle">Stove</text>
+  <text x="200" y="270" font-family="Arial" font-size="14" text-anchor="middle">Kitchen</text>
+</svg>

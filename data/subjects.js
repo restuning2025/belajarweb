@@ -1,4 +1,5 @@
 export const subjects = [
+  // Regular Class Subjects
   {
     id: 'bahasa-indonesia',
     name: 'Bahasa Indonesia',
@@ -46,5 +47,28 @@ export const subjects = [
     name: 'Sains (IPA)',
     description: 'Mata pelajaran Sains untuk kelas 2 SD semester 2',
     icon: '🔬'
+  },
+  
+  // Bilingual Class Subjects
+  {
+    id: 'mathematics_bil',
+    name: 'Mathematics (Bilingual)',
+    description: 'Mathematics for Grade 2 Semester 2 - Bilingual Class',
+    icon: '🧮',
+    class: 'bilingual'
+  },
+  {
+    id: 'english_bil',
+    name: 'English (Bilingual)',
+    description: 'English for Grade 2 Semester 2 - Bilingual Class',
+    icon: '🏫',
+    class: 'bilingual'
+  },
+  {
+    id: 'science_bil',
+    name: 'Science (Bilingual)',
+    description: 'Science for Grade 2 Semester 2 - Bilingual Class',
+    icon: '🔭',
+    class: 'bilingual'
   }
 ];

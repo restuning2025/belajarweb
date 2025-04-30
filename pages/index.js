@@ -20,12 +20,34 @@ export default function Home() {
           Pilih mata pelajaran yang ingin kamu pelajari!
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {subjects.map((subject) => (
+        {/* Regular Class Subjects */}
+        <h2 className="text-2xl font-bold text-[var(--primary)] mb-4">Regular Class</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          {subjects.filter(subject => !subject.class || subject.class !== 'bilingual').map((subject) => (
             <Link
               href={`/quiz/${subject.id}`}
               key={subject.id}
-              className={`${subject.color} hover:opacity-90 transition-opacity rounded-lg p-6 text-white shadow-lg transform hover:scale-105 duration-200`}
+              className={`dark-card hover:bg-[var(--card-hover)] hover:opacity-90 transition-all rounded-lg p-6 shadow-lg transform hover:scale-105 duration-200`}
+            >
+              <div className="flex items-center space-x-4">
+                <span className="text-4xl">{subject.icon}</span>
+                <div>
+                  <h2 className="text-xl font-bold">{subject.name}</h2>
+                  <p className="text-sm opacity-90">{subject.description}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Bilingual Class Subjects */}
+        <h2 className="text-2xl font-bold text-[var(--primary)] mb-4">Bilingual Class</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {subjects.filter(subject => subject.class === 'bilingual').map((subject) => (
+            <Link
+              href={`/quiz/${subject.id}`}
+              key={subject.id}
+              className={`dark-card hover:bg-[var(--card-hover)] border border-blue-500/30 hover:opacity-90 transition-all rounded-lg p-6 shadow-lg transform hover:scale-105 duration-200`}
             >
               <div className="flex items-center space-x-4">
                 <span className="text-4xl">{subject.icon}</span>

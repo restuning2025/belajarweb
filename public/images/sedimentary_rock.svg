@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sedimentary rock with visible layers -->
+  <path d="M 50 50 L 250 50 L 270 70 L 280 100 L 250 150 L 70 160 L 40 130 L 30 90 Z" fill="#d2b48c" stroke="black" stroke-width="2"/>
+  
+  <!-- Visible layers -->
+  <path d="M 50 70 L 260 70" stroke="#a0522d" stroke-width="2" fill="none"/>
+  <path d="M 45 90 L 270 90" stroke="#8b4513" stroke-width="2" fill="none"/>
+  <path d="M 40 110 L 270 110" stroke="#a0522d" stroke-width="2" fill="none"/>
+  <path d="M 50 130 L 250 130" stroke="#8b4513" stroke-width="2" fill="none"/>
+  
+  <text x="150" y="180" font-family="Arial" font-size="14" text-anchor="middle">Sedimentary Rock (with layers)</text>
+</svg>

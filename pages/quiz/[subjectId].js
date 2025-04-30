@@ -4,14 +4,21 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { getCurrentUser, saveQuizResult } from '../../utils/userManager';
 import { subjects } from '../../data/subjects';
-import { questions as bahasaIndonesiaQuestions } from '../../data/questions/bahasa-indonesia';
-import { questions as matematikaQuestions } from '../../data/questions/matematika';
-import { questions as ppknQuestions } from '../../data/questions/ppkn';
-import { questions as pjokQuestions } from '../../data/questions/pjok';
-import { questions as sbdpQuestions } from '../../data/questions/sbdp';
-import { questions as agamaQuestions } from '../../data/questions/agama';
-import { questions as bahasaInggrisQuestions } from '../../data/questions/bahasa-inggris';
-import { questions as sainsQuestions } from '../../data/questions/sains';
+// Regular class imports
+import { questions as bahasaIndonesiaQuestions } from '../../data/questions/bahasa_indonesia_k2t2';
+import { questions as matematikaQuestions } from '../../data/questions/matematika_k2t2';
+import { questions as ppknQuestions } from '../../data/questions/ppkn_k2t2';
+import { questions as pjokQuestions } from '../../data/questions/pjok_k2t2';
+import { questions as sbdpQuestions } from '../../data/questions/sbdp_k2t2';
+import { questions as agamaQuestions } from '../../data/questions/pai_k2t2';
+import { questions as bahasaInggrisQuestions } from '../../data/questions/english_k2t2';
+import { questions as sainsQuestions } from '../../data/questions/sains_k2t2';
+
+// Bilingual class imports
+import { questions as mathematicsBilQuestions } from '../../data/questions/mathematics_bil_k2t2';
+import { questions as englishBilQuestions } from '../../data/questions/english_bil_k2t2';
+import { questions as scienceBilQuestions } from '../../data/questions/science_bil_k2t2';
+import { QUESTION_TYPES } from '../../data/questionSchema';
 
 export default function Quiz() {
   const router = useRouter();
@@ -21,6 +28,8 @@ export default function Quiz() {
   const [answers, setAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
   const [user, setUser] = useState(null);
+  // Always initialize the state hook for CMC2 questions at the top level
+  const [selectedLeftOption, setSelectedLeftOption] = useState(null);
 
   useEffect(() => {
     const currentUser = getCurrentUser();
@@ -41,6 +50,7 @@ export default function Quiz() {
   // Get questions based on subject
   const getQuestions = (subjectId) => {
     switch (subjectId) {
+      // Regular class subjects
       case 'bahasa-indonesia':
         return bahasaIndonesiaQuestions;
       case 'matematika':
@@ -57,6 +67,14 @@ export default function Quiz() {
         return bahasaInggrisQuestions;
       case 'sains':
         return sainsQuestions;
+      
+      // Bilingual class subjects
+      case 'mathematics_bil':
+        return mathematicsBilQuestions;
+      case 'english_bil':
+        return englishBilQuestions;
+      case 'science_bil':
+        return scienceBilQuestions;
       default:
         return [];
     }
@@ -74,11 +92,54 @@ export default function Quiz() {
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  const handleAnswer = (optionIndex) => {
+  // Track the selected left option for CMC2 questions
+
+  const handleLeftOptionSelect = (index) => {
+    setSelectedLeftOption(index);
+  };
+
+  const handleRightOptionSelect = (rightIndex) => {
+    if (selectedLeftOption === null) return;
+    
+    // Get current pairs or initialize
+    const currentPairs = answers[currentQuestionIndex] || [];
+    
+    // Remove any existing pair with this left option
+    const filteredPairs = currentPairs.filter(pair => pair[0] !== selectedLeftOption);
+    
+    // Add the new pair
+    const updatedPairs = [...filteredPairs, [selectedLeftOption, rightIndex]];
+    
+    // Update answers
     setAnswers({
       ...answers,
-      [currentQuestionIndex]: optionIndex,
+      [currentQuestionIndex]: updatedPairs,
     });
+    
+    // Reset selection
+    setSelectedLeftOption(null);
+  };
+
+  const handleAnswer = (optionIndex) => {
+    // For CMC1 (multiple correct answers), toggle selection
+    if (currentQuestion.type === QUESTION_TYPES.CMC1) {
+      const currentSelections = answers[currentQuestionIndex] || [];
+      const updatedSelections = currentSelections.includes(optionIndex)
+        ? currentSelections.filter(index => index !== optionIndex)
+        : [...currentSelections, optionIndex];
+      
+      setAnswers({
+        ...answers,
+        [currentQuestionIndex]: updatedSelections,
+      });
+    } 
+    // For regular MC (single correct answer), just store the selected index
+    else {
+      setAnswers({
+        ...answers,
+        [currentQuestionIndex]: optionIndex,
+      });
+    }
   };
 
   const handleNext = () => {
@@ -92,8 +153,46 @@ export default function Quiz() {
   const calculateScore = () => {
     let correct = 0;
     Object.keys(answers).forEach((questionIndex) => {
-      if (answers[questionIndex] === questions[questionIndex].correctAnswer) {
-        correct++;
+      const question = questions[questionIndex];
+      const userAnswer = answers[questionIndex];
+      
+      // Check answers based on question type
+      if (question.type === QUESTION_TYPES.MC) {
+        // For regular multiple choice
+        if (userAnswer === question.correctAnswer) {
+          correct++;
+        }
+      } 
+      else if (question.type === QUESTION_TYPES.CMC1) {
+        // For multiple correct answers, check if arrays match (sorted for comparison)
+        const sortedUserAnswer = [...userAnswer].sort();
+        const sortedCorrectAnswer = [...question.correctAnswer].sort();
+        
+        if (JSON.stringify(sortedUserAnswer) === JSON.stringify(sortedCorrectAnswer)) {
+          correct++;
+        }
+      }
+      else if (question.type === QUESTION_TYPES.CMC2) {
+        // For matching pairs, check if all pairs match
+        const userPairs = userAnswer || [];
+        const correctPairs = question.correctPairs || [];
+        
+        // Check if all pairs match (must have same length and all pairs must match)
+        if (userPairs.length === correctPairs.length) {
+          // Sort both arrays for consistent comparison
+          const sortedUserPairs = [...userPairs].sort((a, b) => a[0] - b[0]);
+          const sortedCorrectPairs = [...correctPairs].sort((a, b) => a[0] - b[0]);
+          
+          // Check if all pairs match exactly
+          const allPairsMatch = sortedUserPairs.every((pair, index) => {
+            return pair[0] === sortedCorrectPairs[index][0] && 
+                   pair[1] === sortedCorrectPairs[index][1];
+          });
+          
+          if (allPairsMatch) {
+            correct++;
+          }
+        }
       }
     });
     return Math.round((correct / questions.length) * 100);
@@ -101,9 +200,38 @@ export default function Quiz() {
 
   if (showResults) {
     const score = calculateScore();
-    const correctAnswers = Object.keys(answers).filter(
-      key => answers[key] === questions[key].correctAnswer
-    ).length;
+    const correctAnswers = Object.keys(answers).filter(key => {
+      const question = questions[key];
+      const userAnswer = answers[key];
+      
+      if (question.type === QUESTION_TYPES.MC) {
+        return userAnswer === question.correctAnswer;
+      } 
+      else if (question.type === QUESTION_TYPES.CMC1) {
+        const sortedUserAnswer = [...userAnswer].sort();
+        const sortedCorrectAnswer = [...question.correctAnswer].sort();
+        return JSON.stringify(sortedUserAnswer) === JSON.stringify(sortedCorrectAnswer);
+      }
+      else if (question.type === QUESTION_TYPES.CMC2) {
+        // For matching pairs, check if all pairs match
+        const userPairs = userAnswer || [];
+        const correctPairs = question.correctPairs || [];
+        
+        if (userPairs.length === correctPairs.length) {
+          // Sort both arrays for consistent comparison
+          const sortedUserPairs = [...userPairs].sort((a, b) => a[0] - b[0]);
+          const sortedCorrectPairs = [...correctPairs].sort((a, b) => a[0] - b[0]);
+          
+          // Check if all pairs match exactly
+          return sortedUserPairs.every((pair, index) => {
+            return pair[0] === sortedCorrectPairs[index][0] && 
+                   pair[1] === sortedCorrectPairs[index][1];
+          });
+        }
+        return false;
+      }
+      return false;
+    }).length;
     saveQuizResult(subjectId, score, answers, correctAnswers, questions.length);
     return (
       <div className="min-h-screen bg-[var(--background)] py-8">
@@ -175,29 +303,98 @@ export default function Quiz() {
 
           <div className="mb-8">
             <h2 className="text-xl mb-4">{currentQuestion.question}</h2>
-            <div className="space-y-3">
-              {currentQuestion.options.map((option, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleAnswer(index)}
-                  className={`w-full text-left p-4 rounded-lg transition-colors ${
-                    answers[currentQuestionIndex] === index
-                      ? 'bg-[var(--primary)] text-white'
-                      : 'dark-card hover:bg-[var(--card-hover)]'
-                  }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+            
+            {/* Regular MCQ or CMC1 (Multiple options) */}
+            {(currentQuestion.type === QUESTION_TYPES.MC || currentQuestion.type === QUESTION_TYPES.CMC1) && (
+              <div className="space-y-3">
+                {currentQuestion.options.map((option, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswer(index)}
+                    className={`w-full text-left p-4 rounded-lg transition-colors ${
+                      currentQuestion.type === QUESTION_TYPES.CMC1
+                        ? (answers[currentQuestionIndex] && answers[currentQuestionIndex].includes(index)
+                            ? 'bg-[var(--primary)] text-white'
+                            : 'dark-card hover:bg-[var(--card-hover)]')
+                        : (answers[currentQuestionIndex] === index
+                            ? 'bg-[var(--primary)] text-white'
+                            : 'dark-card hover:bg-[var(--card-hover)]')
+                    }`}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
+            
+            {/* Matching pairs (CMC2) */}
+            {currentQuestion.type === QUESTION_TYPES.CMC2 && (
+              <div className="flex flex-col md:flex-row gap-4">
+                {/* Left column */}
+                <div className="flex-1 space-y-3">
+                  <h3 className="font-medium mb-2">Kolom A</h3>
+                  {currentQuestion.leftOptions.map((option, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleLeftOptionSelect(index)}
+                      className={`w-full text-left p-4 rounded-lg transition-colors ${
+                        selectedLeftOption === index
+                          ? 'bg-[var(--primary)] text-white'
+                          : 'dark-card hover:bg-[var(--card-hover)]'
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+                
+                {/* Right column */}
+                <div className="flex-1 space-y-3">
+                  <h3 className="font-medium mb-2">Kolom B</h3>
+                  {currentQuestion.rightOptions.map((option, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleRightOptionSelect(index)}
+                      className={`w-full text-left p-4 rounded-lg transition-colors ${
+                        'dark-card hover:bg-[var(--card-hover)]'
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Show current pairing status for CMC2 */}
+            {currentQuestion.type === QUESTION_TYPES.CMC2 && answers[currentQuestionIndex] && answers[currentQuestionIndex].length > 0 && (
+              <div className="mt-4 p-4 bg-[var(--card-foreground)] rounded-lg">
+                <h3 className="font-medium mb-2">Pasangan yang dipilih:</h3>
+                <ul className="list-disc pl-5 space-y-1">
+                  {answers[currentQuestionIndex].map((pair, index) => (
+                    <li key={index}>
+                      {currentQuestion.leftOptions[pair[0]]} ↔ {currentQuestion.rightOptions[pair[1]]}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <div className="flex justify-end">
             <button
               onClick={handleNext}
-              disabled={answers[currentQuestionIndex] === undefined}
+              disabled={answers[currentQuestionIndex] === undefined || 
+                      (currentQuestion.type === QUESTION_TYPES.CMC1 && 
+                       (!answers[currentQuestionIndex] || answers[currentQuestionIndex].length === 0)) ||
+                      (currentQuestion.type === QUESTION_TYPES.CMC2 && 
+                       (!answers[currentQuestionIndex] || answers[currentQuestionIndex].length === 0))}
               className={`px-6 py-2 rounded-lg transition-opacity ${
-                answers[currentQuestionIndex] === undefined
+                answers[currentQuestionIndex] === undefined || 
+                (currentQuestion.type === QUESTION_TYPES.CMC1 && 
+                (!answers[currentQuestionIndex] || answers[currentQuestionIndex].length === 0)) ||
+                (currentQuestion.type === QUESTION_TYPES.CMC2 && 
+                (!answers[currentQuestionIndex] || answers[currentQuestionIndex].length === 0))
                   ? 'bg-gray-700 cursor-not-allowed'
                   : 'bg-[var(--primary)] text-white hover:opacity-90'
               }`}

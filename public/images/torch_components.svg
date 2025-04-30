@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Torch body -->
+  <rect x="100" y="40" width="100" height="140" rx="10" fill="#555" stroke="black" stroke-width="2"/>
+  
+  <!-- Battery compartment -->
+  <rect x="110" y="50" width="80" height="60" rx="5" fill="#333" stroke="black" stroke-width="1"/>
+  <text x="150" y="80" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Battery</text>
+  
+  <!-- Switch -->
+  <rect x="130" y="120" width="40" height="10" rx="5" fill="#f00" stroke="black" stroke-width="1"/>
+  <text x="150" y="140" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Switch</text>
+  
+  <!-- Bulb -->
+  <circle cx="150" cy="30" r="20" fill="#ff9" stroke="black" stroke-width="1"/>
+  <text x="150" y="35" font-family="Arial" font-size="12" text-anchor="middle">Bulb</text>
+  
+  <!-- Connecting wires (simplified) -->
+  <path d="M 150 50 L 150 40" stroke="red" stroke-width="2" fill="none"/>
+  <path d="M 130 120 L 110 80" stroke="red" stroke-width="2" fill="none"/>
+  <path d="M 170 120 L 190 80" stroke="red" stroke-width="2" fill="none"/>
+  
+  <text x="150" y="190" font-family="Arial" font-size="14" text-anchor="middle">Torch Components</text>
+</svg>

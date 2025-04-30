@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Room background -->
+  <rect x="50" y="50" width="300" height="200" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+  
+  <!-- Floor -->
+  <rect x="50" y="200" width="300" height="50" fill="#d2b48c" stroke="#333" stroke-width="1"/>
+  
+  <!-- Sofa -->
+  <rect x="80" y="150" width="120" height="60" rx="10" fill="#6a5acd" stroke="#333" stroke-width="2"/>
+  <rect x="80" y="130" width="120" height="30" rx="5" fill="#6a5acd" stroke="#333" stroke-width="2"/>
+  
+  <!-- Coffee table -->
+  <rect x="220" y="160" width="80" height="40" rx="5" fill="#8b4513" stroke="#333" stroke-width="2"/>
+  
+  <!-- Window -->
+  <rect x="150" y="70" width="80" height="60" fill="#add8e6" stroke="#333" stroke-width="2"/>
+  <line x1="190" y1="70" x2="190" y2="130" stroke="#333" stroke-width="2"/>
+  <line x1="150" y1="100" x2="230" y2="100" stroke="#333" stroke-width="2"/>
+  
+  <!-- TV -->
+  <rect x="270" y="100" width="60" height="40" fill="#000" stroke="#333" stroke-width="2"/>
+  <rect x="285" y="150" width="30" height="10" fill="#8b4513" stroke="#333" stroke-width="1"/>
+  
+  <text x="120" y="180" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Sofa</text>
+  <text x="200" y="270" font-family="Arial" font-size="14" text-anchor="middle">Living Room</text>
+</svg>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Museum background -->
+  <rect x="0" y="0" width="400" height="300" fill="#f5f5f5" stroke="none"/>
+  
+  <!-- Museum floor -->
+  <rect x="0" y="250" width="400" height="50" fill="#d2b48c" stroke="none"/>
+  
+  <!-- Museum walls -->
+  <line x1="0" y1="250" x2="400" y2="250" stroke="#333" stroke-width="2"/>
+  <line x1="50" y1="50" x2="50" y2="250" stroke="#333" stroke-width="2"/>
+  <line x1="350" y1="50" x2="350" y2="250" stroke="#333" stroke-width="2"/>
+  
+  <!-- Museum ceiling -->
+  <path d="M 50 50 L 350 50" stroke="#333" stroke-width="2" fill="none"/>
+  
+  <!-- Dinosaur skeleton -->
+  <!-- Skull -->
+  <path d="M 100 150 L 150 120 L 180 150 L 150 180 Z" fill="none" stroke="#333" stroke-width="2"/>
+  
+  <!-- Spine -->
+  <path d="M 180 150 L 300 150" fill="none" stroke="#333" stroke-width="2"/>
+  
+  <!-- Ribs -->
+  <path d="M 200 150 L 200 180" fill="none" stroke="#333" stroke-width="2"/>
+  <path d="M 220 150 L 220 190" fill="none" stroke="#333" stroke-width="2"/>
+  <path d="M 240 150 L 240 185" fill="none" stroke="#333" stroke-width="2"/>
+  <path d="M 260 150 L 260 180" fill="none" stroke="#333" stroke-width="2"/>
+  <path d="M 280 150 L 280 170" fill="none" stroke="#333" stroke-width="2"/>
+  
+  <!-- Tail -->
+  <path d="M 300 150 C 320 140, 340 160, 350 130" fill="none" stroke="#333" stroke-width="2"/>
+  
+  <!-- Legs -->
+  <path d="M 220 150 L 200 220 L 210 250" fill="none" stroke="#333" stroke-width="2"/>
+  <path d="M 260 150 L 280 220 L 270 250" fill="none" stroke="#333" stroke-width="2"/>
+  
+  <!-- Front limbs -->
+  <path d="M 190 150 L 180 190" fill="none" stroke="#333" stroke-width="2"/>
+  <path d="M 210 150 L 220 190" fill="none" stroke="#333" stroke-width="2"/>
+  
+  <!-- Exhibit platform -->
+  <rect x="100" y="250" width="280" height="10" fill="#8b4513" stroke="#333" stroke-width="1"/>
+  
+  <!-- Display sign -->
+  <rect x="120" y="220" width="80" height="30" fill="white" stroke="#333" stroke-width="1"/>
+  <text x="160" y="240" font-family="Arial" font-size="10" text-anchor="middle">Tyrannosaurus Rex</text>
+  
+  <!-- Museum visitor (simplified) -->
+  <circle cx="50" cy="220" r="10" fill="#a0522d" stroke="#333" stroke-width="1"/>
+  <line x1="50" y1="230" x2="50" y2="250" stroke="#333" stroke-width="2"/>
+  <line x1="50" y1="240" x2="40" y2="250" stroke="#333" stroke-width="2"/>
+  <line x1="50" y1="240" x2="60" y2="250" stroke="#333" stroke-width="2"/>
+  
+  <text x="200" y="280" font-family="Arial" font-size="14" text-anchor="middle">Museum Dinosaur Skeleton</text>
+</svg>
