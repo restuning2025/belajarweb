@@ -96,7 +96,7 @@ export default function MultipleAnswerQuiz({ question, onComplete }) {
       if (correctCount > 0) {
         setMotivationMessage(`Hampir benar! Kamu benar ${correctCount} dari ${totalCorrect}. 💪`);
       } else {
-        setMotivationMessage('Belum tepat. Coba lagi ya! 🤔');
+        setMotivationMessage('Jawabannya akan ditunjukkan. Perhatikan jawaban yang benar! 🤔');
       }
     }
     
@@ -217,10 +217,21 @@ export default function MultipleAnswerQuiz({ question, onComplete }) {
         )}
         
         {/* Explanation (shown after submission) */}
-        {isSubmitted && question.explanation && (
+        {isSubmitted && (
           <div className="mt-8 p-5 bg-pink-50 rounded-xl border-2 border-pink-100">
             <p className="font-bold text-pink-700 mb-2 text-lg">Penjelasan:</p>
-            <p className="text-gray-700 text-lg">{question.explanation}</p>
+            {question.explanation ? (
+              <p className="text-gray-700 text-lg">{question.explanation}</p>
+            ) : (
+              <div className="text-gray-700">
+                <p className="text-lg mb-2">Jawaban yang benar adalah:</p>
+                <ul className="list-disc pl-5">
+                  {question.correctAnswers.map((correctIndex, idx) => (
+                    <li key={idx} className="mb-1 font-medium">{question.options[correctIndex]}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
         

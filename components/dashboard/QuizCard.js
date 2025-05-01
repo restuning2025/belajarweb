@@ -67,7 +67,7 @@ export default function QuizCard({ question, onComplete }) {
       setMotivationMessage('Hebat! Jawaban kamu benar! 🎉');
       setShowMotivation(true);
     } else {
-      setMotivationMessage('Belum tepat, coba lagi ya! 💪');
+      setMotivationMessage('Belum tepat, jawabannya akan ditunjukkan! 💪');
       setShowMotivation(true);
     }
     
@@ -131,20 +131,31 @@ export default function QuizCard({ question, onComplete }) {
             // Determine styling based on selection and correctness
             let optionClass = "p-5 border-3 rounded-2xl transition-all flex items-center quiz-option";
             
-            if (isAnswered && selectedOption === randomIndex) {
-              optionClass += " quiz-option-locked";
-              if (originalIndex === question.correctAnswer) {
-                optionClass += " quiz-option-correct bg-green-100 border-green-500";
+            if (isAnswered) {
+              // After answering, apply specific styles
+              if (selectedOption === randomIndex) {
+                // This is the user's selected option
+                optionClass += " quiz-option-locked";
+                if (originalIndex === question.correctAnswer) {
+                  // User selected correct answer
+                  optionClass += " quiz-option-correct bg-green-100 border-green-500";
+                } else {
+                  // User selected wrong answer
+                  optionClass += " quiz-option-incorrect bg-red-100 border-red-500";
+                }
               } else {
-                optionClass += " quiz-option-incorrect bg-red-100 border-red-500";
+                // All other options after answering
+                if (originalIndex === question.correctAnswer) {
+                  // Highlight correct answer (even if not selected)
+                  optionClass += " quiz-option-correct bg-green-100 border-green-500";
+                } else {
+                  // Regular unselected option
+                  optionClass += " border-gray-200 opacity-70";
+                }
               }
-            } else if (!isAnswered) {
-              optionClass += " border-gray-200 hover:border-indigo-400 hover:bg-indigo-50 cursor-pointer";
             } else {
-              optionClass += " border-gray-200 opacity-70";
-              if (originalIndex === question.correctAnswer) {
-                optionClass += " quiz-option-correct bg-green-100 border-green-500";
-              }
+              // Before answering, apply hover styles
+              optionClass += " border-gray-200 hover:border-indigo-400 hover:bg-indigo-50 cursor-pointer";
             }
             
             return (
@@ -173,10 +184,14 @@ export default function QuizCard({ question, onComplete }) {
         </div>
         
         {/* Explanation (shown after answering) */}
-        {isAnswered && question.explanation && (
+        {isAnswered && (
           <div className="mt-8 p-5 bg-indigo-50 rounded-xl border-2 border-indigo-100">
             <p className="font-bold text-indigo-700 mb-2 text-lg">Penjelasan:</p>
-            <p className="text-gray-700 text-lg">{question.explanation}</p>
+            {question.explanation ? (
+              <p className="text-gray-700 text-lg">{question.explanation}</p>
+            ) : (
+              <p className="text-gray-700 text-lg">Jawaban yang benar adalah: <span className="font-bold">{question.options[question.correctAnswer]}</span></p>
+            )}
           </div>
         )}
         

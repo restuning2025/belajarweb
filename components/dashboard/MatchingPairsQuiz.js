@@ -302,10 +302,24 @@ export default function MatchingPairsQuiz({ question, onComplete }) {
         </div>
         
         {/* Explanation (shown after completion) */}
-        {isComplete && question.explanation && (
+        {isComplete && (
           <div className="mt-8 p-5 bg-indigo-50 rounded-xl border-2 border-indigo-100">
             <p className="font-bold text-indigo-700 mb-2 text-lg">Penjelasan:</p>
-            <p className="text-gray-700 text-lg">{question.explanation}</p>
+            {question.explanation ? (
+              <p className="text-gray-700 text-lg">{question.explanation}</p>
+            ) : (
+              <div className="text-gray-700">
+                <p className="text-lg mb-2">Pasangan yang benar:</p>
+                <ul className="list-disc pl-5">
+                  {question.correctPairs.map(([leftIdx, rightIdx], idx) => (
+                    <li key={idx} className="mb-1">
+                      <span className="font-medium">{question.leftOptions[leftIdx]}</span> ↔ 
+                      <span className="font-medium">{question.rightOptions[rightIdx]}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
         
