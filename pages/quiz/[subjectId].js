@@ -30,6 +30,8 @@ export default function Quiz() {
   const [user, setUser] = useState(null);
   const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  // Track submitted state for multiple answer questions
+  const [submittedQuestions, setSubmittedQuestions] = useState({});
   // Always initialize the state hook for CMC2 questions at the top level
   const [selectedLeftOption, setSelectedLeftOption] = useState(null);
 
@@ -207,6 +209,7 @@ export default function Quiz() {
     setShowResults(false);
     setScore(0);
     setSelectedLeftOption(null);
+    setSubmittedQuestions({});
   };
 
   if (showResults) {
@@ -388,11 +391,33 @@ export default function Quiz() {
                   } else {
                     // For CMC1 (multiple answers)
                     isSelected = answers[currentQuestionIndex] && answers[currentQuestionIndex].includes(index);
+                    const isSubmitted = submittedQuestions[currentQuestionIndex] === true;
                     
-                    if (isSelected) {
-                      buttonClass += " bg-[var(--primary)] text-white";
+                    // Check if this option is a correct answer
+                    const isCorrectOption = currentQuestion.correctAnswers && currentQuestion.correctAnswers.includes(index);
+                    
+                    if (isSubmitted) {
+                      // After submission
+                      if (isSelected && isCorrectOption) {
+                        // Selected and correct
+                        buttonClass += " bg-green-100 border-2 border-green-500 text-green-800";
+                      } else if (isSelected && !isCorrectOption) {
+                        // Selected but wrong
+                        buttonClass += " bg-red-100 border-2 border-red-500 text-red-800";
+                      } else if (!isSelected && isCorrectOption) {
+                        // Not selected but is correct answer
+                        buttonClass += " bg-green-100 border-2 border-green-500 text-green-800";
+                      } else {
+                        // Not selected and not correct
+                        buttonClass += " dark-card opacity-70";
+                      }
                     } else {
-                      buttonClass += " dark-card hover:bg-[var(--card-hover)]";
+                      // Before submission
+                      if (isSelected) {
+                        buttonClass += " bg-[var(--primary)] text-white";
+                      } else {
+                        buttonClass += " dark-card hover:bg-[var(--card-hover)]";
+                      }
                     }
                   }
                   
@@ -405,21 +430,23 @@ export default function Quiz() {
                     >
                       <span>{option}</span>
                       {/* Show indicators for correct/incorrect answers */}
-                      {isAnswered && currentQuestion.type === QUESTION_TYPES.MC && (
+                      {(isAnswered && currentQuestion.type === QUESTION_TYPES.MC) || 
+                       (submittedQuestions[currentQuestionIndex] && currentQuestion.type === QUESTION_TYPES.CMC1) ? (
                         <span className="ml-2">
-                          {isCorrect ? (
+                          {isCorrect || (currentQuestion.type === QUESTION_TYPES.CMC1 && Array.isArray(currentQuestion.correctAnswers) && currentQuestion.correctAnswers.includes(index) && isSelected) ? (
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-green-600" viewBox="0 0 16 16">
                               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                               <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
                             </svg>
-                          ) : isSelected ? (
+                          ) : (isSelected && currentQuestion.type === QUESTION_TYPES.MC) || 
+                             (currentQuestion.type === QUESTION_TYPES.CMC1 && isSelected && Array.isArray(currentQuestion.correctAnswers) && !currentQuestion.correctAnswers.includes(index)) ? (
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-red-600" viewBox="0 0 16 16">
                               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                             </svg>
                           ) : null}
                         </span>
-                      )}
+                      ) : null }
                     </button>
                   );
                 })}
@@ -479,19 +506,55 @@ export default function Quiz() {
               </div>
             )}
           </div>
+          
+          {/* Submit button for multiple answer questions */}
+          {currentQuestion.type === QUESTION_TYPES.CMC1 && 
+           answers[currentQuestionIndex] && 
+           answers[currentQuestionIndex].length > 0 && 
+           !submittedQuestions[currentQuestionIndex] && (
+            <div className="mt-6">
+              <button
+                onClick={() => {
+                  // Mark this question as submitted
+                  setSubmittedQuestions({
+                    ...submittedQuestions,
+                    [currentQuestionIndex]: true
+                  });
+                }}
+                className="py-3 px-5 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 16 16">
+                  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                </svg>
+                Periksa Jawaban
+              </button>
+            </div>
+          )}
 
           <div className="flex justify-end">
             {/* Explanation section (displayed after answering a question) */}
-            {currentQuestion.type === QUESTION_TYPES.MC && answers[currentQuestionIndex] !== undefined && (
+            {(currentQuestion.type === QUESTION_TYPES.MC && answers[currentQuestionIndex] !== undefined) || 
+             (currentQuestion.type === QUESTION_TYPES.CMC1 && submittedQuestions[currentQuestionIndex]) ? (
               <div className="mt-6 p-4 bg-blue-50 border-2 border-blue-100 rounded-lg">
                 <h3 className="font-bold text-blue-800 mb-2">Penjelasan:</h3>
                 {currentQuestion.explanation ? (
                   <p className="text-gray-700">{currentQuestion.explanation}</p>
                 ) : (
-                  <p className="text-gray-700">Jawaban yang benar adalah: <span className="font-bold">{currentQuestion.options[currentQuestion.correctAnswer]}</span></p>
+                  currentQuestion.type === QUESTION_TYPES.MC ? (
+                    <p className="text-gray-700">Jawaban yang benar adalah: <span className="font-bold">{currentQuestion.options[currentQuestion.correctAnswer]}</span></p>
+                  ) : (
+                    <div className="text-gray-700">
+                      <p className="mb-2">Jawaban yang benar adalah:</p>
+                      <ul className="list-disc pl-5">
+                        {currentQuestion.correctAnswers.map((correctIndex, idx) => (
+                          <li key={idx} className="mb-1 font-medium">{currentQuestion.options[correctIndex]}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )
                 )}
               </div>
-            )}
+            ) : null}
             
             <button
               onClick={handleNext}
