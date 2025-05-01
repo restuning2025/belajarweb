@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -32,6 +32,70 @@ export default function Quiz() {
   const [totalQuestions, setTotalQuestions] = useState(0);
   // Track submitted state for multiple answer questions
   const [submittedQuestions, setSubmittedQuestions] = useState({});
+  const [randomizedQuestions, setRandomizedQuestions] = useState([]);
+  
+  // Utility function to shuffle an array (Fisher-Yates algorithm)
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+  
+  // Function to randomize all question types
+  const randomizeQuestions = (questions) => {
+    return questions.map(question => {
+      const randomizedQuestion = { ...question };
+      
+      // For multiple choice (MC) questions
+      if (question.type === QUESTION_TYPES.MC) {
+        // Create a mapping to track the original indices
+        const originalOptions = [...question.options];
+        const randomOptions = shuffleArray(originalOptions);
+        
+        // Find where the correct answer is now
+        const correctOption = originalOptions[question.correctAnswer];
+        const newCorrectIndex = randomOptions.indexOf(correctOption);
+        
+        randomizedQuestion.options = randomOptions;
+        randomizedQuestion.originalCorrectAnswer = question.correctAnswer;
+        randomizedQuestion.correctAnswer = newCorrectIndex;
+      }
+      
+      // For multiple answer (CMC1) questions
+      else if (question.type === QUESTION_TYPES.CMC1) {
+        const originalOptions = [...question.options];
+        const randomOptions = shuffleArray(originalOptions);
+        
+        // Update correct answers indices, with safety check
+        let correctAnswers = [];
+        if (Array.isArray(question.correctAnswers)) {
+          correctAnswers = question.correctAnswers.map(index => {
+            const correctOption = originalOptions[index];
+            return randomOptions.indexOf(correctOption);
+          });
+        }
+        
+        randomizedQuestion.options = randomOptions;
+        randomizedQuestion.originalCorrectAnswers = question.correctAnswers;
+        randomizedQuestion.correctAnswers = correctAnswers;
+      }
+      
+      // For matching pairs (CMC2) questions
+      else if (question.type === QUESTION_TYPES.CMC2) {
+        // Only shuffle the order of options, not the pairs themselves
+        randomizedQuestion.leftOptions = shuffleArray([...question.leftOptions]);
+        randomizedQuestion.rightOptions = shuffleArray([...question.rightOptions]);
+        
+        // We need to maintain the pairs mapping
+        randomizedQuestion.correctPairs = question.correctPairs;
+      }
+      
+      return randomizedQuestion;
+    });
+  };
   // Always initialize the state hook for CMC2 questions at the top level
   const [selectedLeftOption, setSelectedLeftOption] = useState(null);
 
@@ -84,17 +148,36 @@ export default function Quiz() {
     }
   };
 
-  const questions = getQuestions(subjectId);
+  // Get questions from data
+  const originalQuestions = getQuestions(subjectId);
+  
+  // Initialize randomized questions when component mounts
+  // Using a ref to track initialization
+  const initialized = useRef(false);
+  
+  useEffect(() => {
+    // Always run once, with proper dependency handling
+    if (!initialized.current) {
+      const randomized = randomizeQuestions(originalQuestions || []);
+      setRandomizedQuestions(randomized);
+      initialized.current = true;
+    }
+  }, []);
 
   if (!subject) {
     return <div className="min-h-screen bg-[var(--background)] py-8 flex items-center justify-center">Mata pelajaran tidak ditemukan</div>;
   }
 
-  if (!questions || questions.length === 0) {
+  if (!originalQuestions || originalQuestions.length === 0) {
     return <div className="min-h-screen bg-[var(--background)] py-8 flex items-center justify-center">Pertanyaan tidak tersedia</div>;
   }
 
-  const currentQuestion = questions[currentQuestionIndex];
+  // Ensure we have randomized questions before rendering the main content
+  if (originalQuestions && originalQuestions.length > 0 && randomizedQuestions.length === 0) {
+    return <div className="min-h-screen bg-[var(--background)] py-8 flex items-center justify-center">Memuat pertanyaan...</div>;
+  }
+
+  const currentQuestion = randomizedQuestions[currentQuestionIndex];
 
   // Track the selected left option for CMC2 questions
 
@@ -147,22 +230,28 @@ export default function Quiz() {
   };
 
   const handleNext = () => {
-    // Move to next question or show results
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
-      setSelectedLeftOption(null); // Reset selected left option for CMC2 questions
-    } else {
-      const finalScore = calculateScore();
-      setScore(finalScore.score);
-      setTotalQuestions(finalScore.total);
+    // If at the last question, show results
+    if (currentQuestionIndex === randomizedQuestions.length - 1) {
+      const scoreData = getCorrectAnswers();
+      setScore(scoreData.score);
+      setTotalQuestions(scoreData.total);
       setShowResults(true);
+      return;
     }
+    
+    // Otherwise go to next question
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+    setSelectedLeftOption(null);
   };
 
-  const calculateScore = () => {
+  // Calculate score based on randomized questions
+  const getCorrectAnswers = () => {
     let correct = 0;
     Object.keys(answers).forEach(key => {
-      const question = questions[key];
+      // Make sure the question exists in our randomized questions array
+      if (!randomizedQuestions[key]) return;
+      
+      const question = randomizedQuestions[key];
       const userAnswer = answers[key];
       
       if (question.type === QUESTION_TYPES.MC) {
@@ -172,9 +261,13 @@ export default function Quiz() {
         }
       } else if (question.type === QUESTION_TYPES.CMC1) {
         // For multiple answers, check if arrays match exactly (order doesn't matter)
-        if (userAnswer && question.correctAnswers) {
-          const sortedUser = [...userAnswer].sort();
-          const sortedCorrect = [...question.correctAnswers].sort();
+        if (userAnswer && Array.isArray(userAnswer) && 
+            question.correctAnswers && Array.isArray(question.correctAnswers)) {
+          // Ensure we have arrays before sorting
+          const sortedUser = [...userAnswer].sort((a, b) => a - b);
+          const sortedCorrect = [...question.correctAnswers].sort((a, b) => a - b);
+          
+          // Compare arrays by checking length and every element
           if (sortedUser.length === sortedCorrect.length && 
               sortedUser.every((val, idx) => val === sortedCorrect[idx])) {
             correct++;
@@ -196,25 +289,34 @@ export default function Quiz() {
         }
       }
     });
-    return { 
-      score: correct, 
-      total: questions.length,
-      percentage: Math.round((correct / questions.length) * 100)
+    
+    return {
+      score: correct,
+      total: randomizedQuestions.length,
+      percentage: Math.round((correct / randomizedQuestions.length) * 100)
     };
   };
 
   const resetQuiz = () => {
+    // Reset all state
     setCurrentQuestionIndex(0);
     setAnswers({});
     setShowResults(false);
     setScore(0);
     setSelectedLeftOption(null);
     setSubmittedQuestions({});
+    
+    // Re-randomize questions for a fresh experience
+    const randomized = randomizeQuestions(originalQuestions || []);
+    setRandomizedQuestions(randomized);
   };
 
   if (showResults) {
     const correctAnswers = Object.keys(answers).filter(key => {
-      const question = questions[key];
+      // Check if the question exists in randomizedQuestions
+      if (!randomizedQuestions[key]) return false;
+      
+      const question = randomizedQuestions[key];
       const userAnswer = answers[key];
       
       if (question.type === QUESTION_TYPES.MC) {
@@ -349,7 +451,7 @@ export default function Quiz() {
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-2xl font-bold">{subject.name}</h1>
             <div className="text-[var(--foreground)] opacity-80">
-              Pertanyaan {currentQuestionIndex + 1} dari {questions.length}
+              Pertanyaan {currentQuestionIndex + 1} dari {randomizedQuestions.length}
             </div>
           </div>
 
@@ -573,7 +675,7 @@ export default function Quiz() {
                   : 'bg-[var(--primary)] text-white hover:opacity-90'
               }`}
             >
-              {currentQuestionIndex === questions.length - 1 ? 'Selesai' : 'Selanjutnya'}
+              {currentQuestionIndex === randomizedQuestions.length - 1 ? 'Selesai' : 'Selanjutnya'}
             </button>
           </div>
         </div>
