@@ -476,10 +476,11 @@ export default function Quiz() {
                       
                       if (!feedback) return null;
                       
-                      // Determine the status color
+                      // Determine the status color and text color
                       const statusColor = feedback.isCorrect ? 'bg-green-100 border-green-500' : 
                                          feedback.partiallyCorrect ? 'bg-yellow-100 border-yellow-500' : 
                                          'bg-red-100 border-red-500';
+                      const textColor = 'text-gray-800';
                       
                       // Format user answer based on question type
                       let userAnswerDisplay = '';
@@ -508,23 +509,23 @@ export default function Quiz() {
                       }
                       
                       return (
-                        <div key={index} className={`border-2 ${statusColor} rounded-lg p-4`}>
+                        <div key={index} className={`border-2 ${statusColor} rounded-lg p-4 ${textColor}`}>
                           <div className="flex justify-between items-start mb-2">
-                            <h4 className="text-lg font-semibold">Pertanyaan {index + 1}</h4>
+                            <h4 className="text-lg font-semibold text-gray-900">Pertanyaan {index + 1}</h4>
                             <div className="flex items-center">
-                              <span className="font-bold mr-2">Skor: {questionScore}</span>
+                              <span className="font-bold mr-2 text-gray-900">Skor: {questionScore}</span>
                               {feedback.isCorrect ? (
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-green-600" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-green-700" viewBox="0 0 16 16">
                                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                   <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
                                 </svg>
                               ) : feedback.partiallyCorrect ? (
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-yellow-600" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-yellow-700" viewBox="0 0 16 16">
                                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                   <path d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5zm0 9a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z"/>
                                 </svg>
                               ) : (
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-red-600" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-red-700" viewBox="0 0 16 16">
                                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                 </svg>
@@ -532,26 +533,26 @@ export default function Quiz() {
                             </div>
                           </div>
                           
-                          <p className="mb-3">{question.question}</p>
+                          <p className="mb-3 text-gray-900">{question.question}</p>
                           
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-                            <div>
-                              <h5 className="font-medium text-gray-700">Jawaban Kamu:</h5>
-                              <p className={`${feedback.isCorrect ? 'text-green-700' : feedback.partiallyCorrect ? 'text-yellow-700' : 'text-red-700'} font-medium`}>
+                            <div className="bg-white bg-opacity-90 p-3 rounded border border-gray-200">
+                              <h5 className="font-medium text-gray-900">Jawaban Kamu:</h5>
+                              <p className={`${feedback.isCorrect ? 'text-green-800' : feedback.partiallyCorrect ? 'text-yellow-800' : 'text-red-800'} font-medium`}>
                                 {userAnswerDisplay}
                               </p>
                             </div>
                             
-                            <div>
-                              <h5 className="font-medium text-gray-700">Jawaban Benar:</h5>
-                              <p className="text-green-700 font-medium">{correctAnswerDisplay}</p>
+                            <div className="bg-white bg-opacity-90 p-3 rounded border border-gray-200">
+                              <h5 className="font-medium text-gray-900">Jawaban Benar:</h5>
+                              <p className="text-green-800 font-medium">{correctAnswerDisplay}</p>
                             </div>
                           </div>
                           
                           {feedback.explanation && (
-                            <div className="mt-2 bg-white bg-opacity-50 p-3 rounded">
-                              <h5 className="font-medium text-gray-700">Penjelasan:</h5>
-                              <p>{feedback.explanation}</p>
+                            <div className="mt-2 bg-white p-3 rounded border border-gray-200">
+                              <h5 className="font-medium text-gray-900">Penjelasan:</h5>
+                              <p className="text-gray-800">{feedback.explanation}</p>
                             </div>
                           )}
                         </div>
