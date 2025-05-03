@@ -33,6 +33,8 @@ export default function Quiz() {
   // Track submitted state for multiple answer questions
   const [submittedQuestions, setSubmittedQuestions] = useState({});
   const [randomizedQuestions, setRandomizedQuestions] = useState([]);
+  // Track if review section is open
+  const [showReview, setShowReview] = useState(false);
   
   // Utility function to shuffle an array (Fisher-Yates algorithm)
   const shuffleArray = (array) => {
@@ -243,57 +245,119 @@ export default function Quiz() {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
     setSelectedLeftOption(null);
   };
-
-  // Calculate score based on randomized questions
+  
+  // Calculate score with flexible scoring system
   const getCorrectAnswers = () => {
-    let correct = 0;
+    let totalScore = 0;
+    const questionScores = {};
+    const questionFeedback = {};
+    
     Object.keys(answers).forEach(key => {
       // Make sure the question exists in our randomized questions array
       if (!randomizedQuestions[key]) return;
       
       const question = randomizedQuestions[key];
       const userAnswer = answers[key];
+      let questionScore = 0;
+      let feedback = {
+        isCorrect: false,
+        explanation: question.explanation || '',
+        userAnswer: userAnswer,
+        correctAnswer: null,
+        partiallyCorrect: false
+      };
       
       if (question.type === QUESTION_TYPES.MC) {
         // For multiple choice, direct comparison
+        feedback.correctAnswer = question.correctAnswer;
         if (userAnswer === question.correctAnswer) {
-          correct++;
+          questionScore = 1; // Full point
+          feedback.isCorrect = true;
+        } else {
+          questionScore = 0; // No penalty for wrong answer
+          feedback.isCorrect = false;
         }
-      } else if (question.type === QUESTION_TYPES.CMC1) {
-        // For multiple answers, check if arrays match exactly (order doesn't matter)
+      } 
+      
+      else if (question.type === QUESTION_TYPES.CMC1) {
+        // For multiple answers with partial scoring
         if (userAnswer && Array.isArray(userAnswer) && 
             question.correctAnswers && Array.isArray(question.correctAnswers)) {
-          // Ensure we have arrays before sorting
-          const sortedUser = [...userAnswer].sort((a, b) => a - b);
-          const sortedCorrect = [...question.correctAnswers].sort((a, b) => a - b);
           
-          // Compare arrays by checking length and every element
-          if (sortedUser.length === sortedCorrect.length && 
-              sortedUser.every((val, idx) => val === sortedCorrect[idx])) {
-            correct++;
+          feedback.correctAnswer = question.correctAnswers;
+          
+          // Count correct selections
+          const correctSelected = userAnswer.filter(ans => 
+            question.correctAnswers.includes(ans)).length;
+          
+          // Count incorrect selections (selected options that aren't correct)
+          const incorrectSelected = userAnswer.filter(ans => 
+            !question.correctAnswers.includes(ans)).length;
+          
+          // Calculate score based on correct and incorrect selections
+          if (correctSelected === question.correctAnswers.length && incorrectSelected === 0) {
+            // All correct answers selected and no wrong ones
+            questionScore = 1;
+            feedback.isCorrect = true;
+          } else if (correctSelected > 0) {
+            // Partial credit for some correct answers
+            const partialScore = correctSelected / question.correctAnswers.length;
+            // Apply penalty for incorrect selections
+            const penalty = incorrectSelected * 0.2;
+            questionScore = Math.max(0, partialScore - penalty);
+            feedback.isCorrect = false;
+            feedback.partiallyCorrect = true;
+          } else {
+            // No correct answers selected
+            questionScore = 0;
+            feedback.isCorrect = false;
           }
         }
-      } else if (question.type === QUESTION_TYPES.CMC2) {
-        // For matching pairs, check each pair
+      } 
+      
+      else if (question.type === QUESTION_TYPES.CMC2) {
+        // For matching pairs, with partial credit
         if (userAnswer && question.correctPairs) {
-          const allCorrect = userAnswer.every(([leftIdx, rightIdx]) => {
-            // Find if this left index has a matching correct right index
-            return question.correctPairs.some(([correctLeft, correctRight]) => 
-              leftIdx === correctLeft && rightIdx === correctRight
-            );
-          }) && userAnswer.length === question.correctPairs.length;
+          feedback.correctAnswer = question.correctPairs;
           
-          if (allCorrect) {
-            correct++;
+          // Count correct pairs
+          const correctPairs = userAnswer.filter(([leftIdx, rightIdx]) => 
+            question.correctPairs.some(([correctLeft, correctRight]) => 
+              leftIdx === correctLeft && rightIdx === correctRight
+            )
+          ).length;
+          
+          // Calculate partial score
+          if (correctPairs === question.correctPairs.length) {
+            // All pairs matched correctly
+            questionScore = 1;
+            feedback.isCorrect = true;
+          } else if (correctPairs > 0) {
+            // Some pairs matched correctly
+            questionScore = correctPairs / question.correctPairs.length;
+            feedback.isCorrect = false;
+            feedback.partiallyCorrect = true;
+          } else {
+            // No pairs matched correctly
+            questionScore = 0;
+            feedback.isCorrect = false;
           }
         }
       }
+      
+      // Ensure score is never negative
+      questionScore = Math.max(0, questionScore);
+      totalScore += questionScore;
+      questionScores[key] = questionScore;
+      questionFeedback[key] = feedback;
     });
     
     return {
-      score: correct,
+      score: Math.round(totalScore * 10) / 10, // Round to 1 decimal place
       total: randomizedQuestions.length,
-      percentage: Math.round((correct / randomizedQuestions.length) * 100)
+      percentage: Math.round((totalScore / randomizedQuestions.length) * 100),
+      questionScores: questionScores,
+      questionFeedback: questionFeedback
     };
   };
 
@@ -312,44 +376,17 @@ export default function Quiz() {
   };
 
   if (showResults) {
-    const correctAnswers = Object.keys(answers).filter(key => {
-      // Check if the question exists in randomizedQuestions
-      if (!randomizedQuestions[key]) return false;
-      
-      const question = randomizedQuestions[key];
-      const userAnswer = answers[key];
-      
-      if (question.type === QUESTION_TYPES.MC) {
-        return userAnswer === question.correctAnswer;
-      } else if (question.type === QUESTION_TYPES.CMC1) {
-        if (userAnswer && question.correctAnswers) {
-          const sortedUser = [...userAnswer].sort();
-          const sortedCorrect = [...question.correctAnswers].sort();
-          return sortedUser.length === sortedCorrect.length && 
-                 sortedUser.every((val, idx) => val === sortedCorrect[idx]);
-        }
-        return false;
-      } else if (question.type === QUESTION_TYPES.CMC2) {
-        if (userAnswer && question.correctPairs) {
-          return userAnswer.every(([leftIdx, rightIdx]) => {
-            return question.correctPairs.some(([correctLeft, correctRight]) => 
-              leftIdx === correctLeft && rightIdx === correctRight
-            );
-          }) && userAnswer.length === question.correctPairs.length;
-        }
-        return false;
-      }
-      return false;
-    }).length;
+    // Get detailed scoring data
+    const scoreData = getCorrectAnswers();
+    const percentage = scoreData.percentage;
     
-    // Save result to user
+    // Save result to user with detailed information
     if (user) {
-      saveQuizResult(user.id, subjectId, score, totalQuestions);
+      saveQuizResult(subject.id, scoreData.score, answers, scoreData.questionFeedback, randomizedQuestions.length);
     }
     
     // Determine message based on score
     let scoreMessage = '';
-    const percentage = Math.round((score / totalQuestions) * 100);
     
     if (percentage >= 90) {
       scoreMessage = 'Luar Biasa! Kamu sangat menguasai materi ini!';
@@ -373,7 +410,7 @@ export default function Quiz() {
         </Head>
         
         <div className="container mx-auto px-4">
-          <div className="bg-[var(--card)] rounded-xl shadow-lg p-8 max-w-3xl mx-auto">
+          <div className="bg-[var(--card)] rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
             <div className="text-center">
               <div className={`w-28 h-28 bg-gradient-to-r ${confettiColor} rounded-full mx-auto flex items-center justify-center mb-6`}>
                 {percentage >= 60 ? (
@@ -395,14 +432,14 @@ export default function Quiz() {
               <div className="flex flex-col sm:flex-row justify-center gap-6 mb-8">
                 <div className="bg-[var(--card-foreground)] p-6 rounded-xl flex-1">
                   <div className="text-6xl font-bold text-[var(--primary)] mb-2">
-                    {score}
+                    {scoreData.score}
                   </div>
-                  <p className="text-[var(--muted)]">Jawaban Benar</p>
+                  <p className="text-[var(--muted)]">Skor Akhir</p>
                 </div>
                 
                 <div className="bg-[var(--card-foreground)] p-6 rounded-xl flex-1">
                   <div className="text-6xl font-bold text-[var(--foreground)] mb-2">
-                    {totalQuestions}
+                    {scoreData.total}
                   </div>
                   <p className="text-[var(--muted)]">Total Pertanyaan</p>
                 </div>
@@ -414,6 +451,115 @@ export default function Quiz() {
                   <p className="text-[var(--muted)]">Persentase</p>
                 </div>
               </div>
+              
+              {/* Toggle review section button */}
+              <button
+                onClick={() => setShowReview(!showReview)}
+                className="w-full mb-6 px-6 py-3 bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-xl font-bold transition-all text-lg flex items-center justify-center"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                </svg>
+                {showReview ? 'Sembunyikan Ulasan' : 'Lihat Ulasan Detail'}
+              </button>
+              
+              {/* Detailed review section */}
+              {showReview && (
+                <div className="mb-8 border-2 border-gray-200 rounded-xl p-4">
+                  <h3 className="text-xl font-bold mb-4">Ulasan Jawaban</h3>
+                  
+                  <div className="space-y-6">
+                    {randomizedQuestions.map((question, index) => {
+                      const feedback = scoreData.questionFeedback[index];
+                      const questionScore = scoreData.questionScores[index] || 0;
+                      
+                      if (!feedback) return null;
+                      
+                      // Determine the status color
+                      const statusColor = feedback.isCorrect ? 'bg-green-100 border-green-500' : 
+                                         feedback.partiallyCorrect ? 'bg-yellow-100 border-yellow-500' : 
+                                         'bg-red-100 border-red-500';
+                      
+                      // Format user answer based on question type
+                      let userAnswerDisplay = '';
+                      let correctAnswerDisplay = '';
+                      
+                      if (question.type === QUESTION_TYPES.MC) {
+                        userAnswerDisplay = question.options[feedback.userAnswer] || 'Tidak dijawab';
+                        correctAnswerDisplay = question.options[question.correctAnswer];
+                      } 
+                      else if (question.type === QUESTION_TYPES.CMC1) {
+                        userAnswerDisplay = feedback.userAnswer && Array.isArray(feedback.userAnswer) && feedback.userAnswer.length > 0 ?
+                          feedback.userAnswer.map(idx => question.options[idx]).join(', ') : 'Tidak dijawab';
+                        correctAnswerDisplay = question.correctAnswers.map(idx => question.options[idx]).join(', ');
+                      }
+                      else if (question.type === QUESTION_TYPES.CMC2) {
+                        if (feedback.userAnswer && Array.isArray(feedback.userAnswer)) {
+                          userAnswerDisplay = feedback.userAnswer.map(pair => 
+                            `${question.leftOptions[pair[0]]} ↔ ${question.rightOptions[pair[1]]}`
+                          ).join(', ');
+                        } else {
+                          userAnswerDisplay = 'Tidak dijawab';
+                        }
+                        correctAnswerDisplay = question.correctPairs.map(pair => 
+                          `${question.leftOptions[pair[0]]} ↔ ${question.rightOptions[pair[1]]}`
+                        ).join(', ');
+                      }
+                      
+                      return (
+                        <div key={index} className={`border-2 ${statusColor} rounded-lg p-4`}>
+                          <div className="flex justify-between items-start mb-2">
+                            <h4 className="text-lg font-semibold">Pertanyaan {index + 1}</h4>
+                            <div className="flex items-center">
+                              <span className="font-bold mr-2">Skor: {questionScore}</span>
+                              {feedback.isCorrect ? (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-green-600" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                  <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                </svg>
+                              ) : feedback.partiallyCorrect ? (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-yellow-600" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                  <path d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5zm0 9a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z"/>
+                                </svg>
+                              ) : (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="text-red-600" viewBox="0 0 16 16">
+                                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                              )}
+                            </div>
+                          </div>
+                          
+                          <p className="mb-3">{question.question}</p>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                            <div>
+                              <h5 className="font-medium text-gray-700">Jawaban Kamu:</h5>
+                              <p className={`${feedback.isCorrect ? 'text-green-700' : feedback.partiallyCorrect ? 'text-yellow-700' : 'text-red-700'} font-medium`}>
+                                {userAnswerDisplay}
+                              </p>
+                            </div>
+                            
+                            <div>
+                              <h5 className="font-medium text-gray-700">Jawaban Benar:</h5>
+                              <p className="text-green-700 font-medium">{correctAnswerDisplay}</p>
+                            </div>
+                          </div>
+                          
+                          {feedback.explanation && (
+                            <div className="mt-2 bg-white bg-opacity-50 p-3 rounded">
+                              <h5 className="font-medium text-gray-700">Penjelasan:</h5>
+                              <p>{feedback.explanation}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
               
               <div className="space-y-4 sm:space-y-0 sm:flex sm:gap-4 justify-center">
                 <button 

@@ -37,7 +37,7 @@ export const getCurrentUser = () => {
   return users[username];
 };
 
-export const saveQuizResult = (subject, score, answers, correctAnswers, totalQuestions) => {
+export const saveQuizResult = (subject, score, answers, questionFeedback, totalQuestions) => {
   const username = localStorage.getItem('currentUser');
   if (!username) return false;
 
@@ -52,13 +52,22 @@ export const saveQuizResult = (subject, score, answers, correctAnswers, totalQue
     user.quizResults = [];
   }
 
+  // Calculate percentage and correctly answered questions
+  const percentage = Math.round((score / totalQuestions) * 100);
+  const correctlyAnswered = Object.values(questionFeedback).filter(feedback => feedback.isCorrect).length;
+  const partiallyCorrect = Object.values(questionFeedback).filter(feedback => feedback.partiallyCorrect).length;
+  
   const result = {
     score,
     answers,
-    correctAnswers,
+    questionFeedback,
     totalQuestions,
     subject,
-    date: new Date().toISOString()
+    date: new Date().toISOString(),
+    percentage,
+    correctlyAnswered,
+    partiallyCorrect,
+    timestamp: Date.now() // For easy sorting
   };
 
   user.quizHistory[subject].push(result);
