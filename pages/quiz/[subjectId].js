@@ -285,32 +285,77 @@ export default function Quiz() {
             question.correctAnswers && Array.isArray(question.correctAnswers)) {
           
           feedback.correctAnswer = question.correctAnswers;
+          feedback.answerStatus = [];
           
-          // Count correct selections
+          // For each option, track if it's correct and selected
+          question.options.forEach((option, idx) => {
+            // Use the explanation text to override the marked answers if needed
+            const explanationText = question.explanation || '';
+            const optionText = option.toLowerCase();
+            
+            // Check if option is mentioned as correct in explanation
+            const isCorrectInExplanation = explanationText.toLowerCase().includes(optionText) && 
+              !explanationText.toLowerCase().includes(`${optionText} bukan`) &&
+              !explanationText.toLowerCase().includes(`bukan ${optionText}`);
+              
+            // Either use the explanation override or fallback to the default correct answers
+            const isMarkedCorrect = question.correctAnswers.includes(idx);
+            const isReallyCorrect = isCorrectInExplanation || isMarkedCorrect;
+            const isSelected = userAnswer.includes(idx);
+            
+            feedback.answerStatus.push({
+              option,
+              index: idx,
+              isCorrectOption: isReallyCorrect,  // Whether this option is a correct answer
+              isSelected,                        // Whether the user selected this option
+              isCorrect: (isReallyCorrect && isSelected) || (!isReallyCorrect && !isSelected)
+            });
+          });
+          
+          // Recalculate correctAnswers based on explanation text
+          const correctedAnswers = feedback.answerStatus
+            .filter(status => status.isCorrectOption)
+            .map(status => status.index);
+            
+          feedback.correctedAnswers = correctedAnswers;
+          
+          // Count correct selections (the ones that should be selected and were)
           const correctSelected = userAnswer.filter(ans => 
-            question.correctAnswers.includes(ans)).length;
+            correctedAnswers.includes(ans)).length;
           
           // Count incorrect selections (selected options that aren't correct)
           const incorrectSelected = userAnswer.filter(ans => 
-            !question.correctAnswers.includes(ans)).length;
+            !correctedAnswers.includes(ans)).length;
+          
+          // Count correct options that weren't selected (missed correct answers)
+          const missedCorrect = correctedAnswers.filter(ans => 
+            !userAnswer.includes(ans)).length;
           
           // Calculate score based on correct and incorrect selections
-          if (correctSelected === question.correctAnswers.length && incorrectSelected === 0) {
+          if (correctSelected === correctedAnswers.length && incorrectSelected === 0) {
             // All correct answers selected and no wrong ones
             questionScore = 1;
             feedback.isCorrect = true;
-          } else if (correctSelected > 0) {
-            // Partial credit for some correct answers
-            const partialScore = correctSelected / question.correctAnswers.length;
-            // Apply penalty for incorrect selections
-            const penalty = incorrectSelected * 0.2;
-            questionScore = Math.max(0, partialScore - penalty);
-            feedback.isCorrect = false;
-            feedback.partiallyCorrect = true;
           } else {
-            // No correct answers selected
-            questionScore = 0;
-            feedback.isCorrect = false;
+            // Get points for each correct selection
+            const correctPoints = correctSelected === correctedAnswers.length ? 
+                                 1 : (correctSelected / correctedAnswers.length);
+            
+            // Deduct points for each incorrect selection proportionally
+            // but don't let it go below a minimum threshold if some answers are correct
+            const penalty = (incorrectSelected > 0) ? 
+                           (incorrectSelected / (question.options.length - correctedAnswers.length)) * 0.5 : 0;
+            
+            // Calculate final score
+            questionScore = Math.max(0, correctPoints - penalty);
+            
+            if (correctSelected > 0) {
+              feedback.isCorrect = false;
+              feedback.partiallyCorrect = true;
+            } else {
+              feedback.isCorrect = false;
+              feedback.partiallyCorrect = false;
+            }
           }
         }
       } 
@@ -482,28 +527,22 @@ export default function Quiz() {
                                          'bg-red-100 border-red-500';
                       const textColor = 'text-gray-800';
                       
-                      // Format user answer based on question type
-                      let userAnswerDisplay = '';
-                      let correctAnswerDisplay = '';
-                      
+                      // Different display formats based on question type
                       if (question.type === QUESTION_TYPES.MC) {
-                        userAnswerDisplay = question.options[feedback.userAnswer] || 'Tidak dijawab';
-                        correctAnswerDisplay = question.options[question.correctAnswer];
+                        // Nothing to change for standard multiple choice - will use separate format below
                       } 
                       else if (question.type === QUESTION_TYPES.CMC1) {
-                        userAnswerDisplay = feedback.userAnswer && Array.isArray(feedback.userAnswer) && feedback.userAnswer.length > 0 ?
-                          feedback.userAnswer.map(idx => question.options[idx]).join(', ') : 'Tidak dijawab';
-                        correctAnswerDisplay = question.correctAnswers.map(idx => question.options[idx]).join(', ');
+                        // Multiple answer questions use the answerStatus for display
                       }
                       else if (question.type === QUESTION_TYPES.CMC2) {
                         if (feedback.userAnswer && Array.isArray(feedback.userAnswer)) {
-                          userAnswerDisplay = feedback.userAnswer.map(pair => 
+                          const matchingsDisplay = feedback.userAnswer.map(pair => 
                             `${question.leftOptions[pair[0]]} ↔ ${question.rightOptions[pair[1]]}`
                           ).join(', ');
                         } else {
-                          userAnswerDisplay = 'Tidak dijawab';
+                          const matchingsDisplay = 'Tidak dijawab';
                         }
-                        correctAnswerDisplay = question.correctPairs.map(pair => 
+                        const correctMatchingsDisplay = question.correctPairs.map(pair => 
                           `${question.leftOptions[pair[0]]} ↔ ${question.rightOptions[pair[1]]}`
                         ).join(', ');
                       }
@@ -535,18 +574,172 @@ export default function Quiz() {
                           
                           <p className="mb-3 text-gray-900">{question.question}</p>
                           
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-                            <div className="bg-white bg-opacity-90 p-3 rounded border border-gray-200">
-                              <h5 className="font-medium text-gray-900">Jawaban Kamu:</h5>
-                              <p className={`${feedback.isCorrect ? 'text-green-800' : feedback.partiallyCorrect ? 'text-yellow-800' : 'text-red-800'} font-medium`}>
-                                {userAnswerDisplay}
-                              </p>
-                            </div>
+                          <div className="bg-white bg-opacity-90 p-3 rounded border border-gray-200 mb-3">
+                            <h5 className="font-medium text-gray-900 mb-2">Ulasan Jawaban:</h5>
                             
-                            <div className="bg-white bg-opacity-90 p-3 rounded border border-gray-200">
-                              <h5 className="font-medium text-gray-900">Jawaban Benar:</h5>
-                              <p className="text-green-800 font-medium">{correctAnswerDisplay}</p>
-                            </div>
+                            {question.type === QUESTION_TYPES.MC && (
+                              <div className="space-y-2">
+                                {question.options.map((option, idx) => {
+                                  const isSelected = feedback.userAnswer === idx;
+                                  const isCorrect = idx === question.correctAnswer;
+                                  let itemClass = "p-2 rounded flex items-center justify-between";
+                                  let statusIcon = null;
+                                  
+                                  if (isSelected && isCorrect) {
+                                    // Selected and correct
+                                    itemClass += " bg-green-100 border border-green-500";
+                                    statusIcon = (
+                                      <span className="flex items-center text-green-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" className="mr-1">
+                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                        </svg>
+                                        Jawaban Kamu (Benar)
+                                      </span>
+                                    );
+                                  } else if (isSelected && !isCorrect) {
+                                    // Selected but wrong
+                                    itemClass += " bg-red-100 border border-red-500";
+                                    statusIcon = (
+                                      <span className="flex items-center text-red-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" className="mr-1">
+                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                        Jawaban Kamu (Salah)
+                                      </span>
+                                    );
+                                  } else if (!isSelected && isCorrect) {
+                                    // Not selected but is correct answer
+                                    itemClass += " bg-green-50 border border-green-300";
+                                    statusIcon = (
+                                      <span className="flex items-center text-green-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" className="mr-1">
+                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                        </svg>
+                                        Jawaban Benar
+                                      </span>
+                                    );
+                                  }
+                                  
+                                  return (
+                                    <div key={idx} className={itemClass}>
+                                      <span className="text-gray-900">{option}</span>
+                                      {statusIcon}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
+                            
+                            {question.type === QUESTION_TYPES.CMC1 && feedback.answerStatus && (
+                              <div className="space-y-2">
+                                {feedback.answerStatus.map((status, idx) => {
+                                  let itemClass = "p-2 rounded flex items-center justify-between";
+                                  let statusIcon = null;
+                                  
+                                  // Determine if answer is mentioned in the explanation as a correct answer
+                                  // This allows us to override the automatic answer check with the explanation text
+                                  const explanationText = question.explanation || '';
+                                  const optionText = status.option.toLowerCase();
+                                  const isCorrectInExplanation = explanationText.toLowerCase().includes(optionText) && 
+                                    // Check that it's a positive mention (not saying "X is not a correct answer")
+                                    !explanationText.toLowerCase().includes(`${optionText} bukan`) &&
+                                    !explanationText.toLowerCase().includes(`bukan ${optionText}`);
+                                  
+                                  // Either use the explanation override or fallback to the default correct answers
+                                  const isReallyCorrectOption = isCorrectInExplanation || status.isCorrectOption;
+                                    
+                                  if (status.isSelected && isReallyCorrectOption) {
+                                    // Selected and correct (should be selected and was selected)
+                                    itemClass += " bg-green-100 border border-green-500";
+                                    statusIcon = (
+                                      <span className="flex items-center text-green-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" className="mr-1">
+                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                        </svg>
+                                        Jawaban Benar
+                                      </span>
+                                    );
+                                  } else if (status.isSelected && !isReallyCorrectOption) {
+                                    // Selected but wrong (shouldn't be selected but was selected)
+                                    itemClass += " bg-red-100 border border-red-500";
+                                    statusIcon = (
+                                      <span className="flex items-center text-red-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" className="mr-1">
+                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                        Jawaban Salah
+                                      </span>
+                                    );
+                                  } else if (!status.isSelected && isReallyCorrectOption) {
+                                    // Not selected but should be (should be selected but wasn't)
+                                    itemClass += " bg-yellow-100 border border-yellow-500";
+                                    statusIcon = (
+                                      <span className="flex items-center text-yellow-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" className="mr-1">
+                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5zm0 9a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z"/>
+                                        </svg>
+                                        Seharusnya Dipilih
+                                      </span>
+                                    );
+                                  } else if (!status.isSelected && !isReallyCorrectOption) {
+                                    // Correctly not selected (shouldn't be selected and wasn't)
+                                    itemClass += " bg-gray-50 border border-gray-200";
+                                    statusIcon = (
+                                      <span className="flex items-center text-gray-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" className="mr-1">
+                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                        </svg>
+                                        Benar Tidak Dipilih
+                                      </span>
+                                    );
+                                  }
+                                  
+                                  return (
+                                    <div key={idx} className={itemClass}>
+                                      <span className="text-gray-900">{status.option}</span>
+                                      {statusIcon}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
+                            
+                            {question.type === QUESTION_TYPES.CMC2 && (
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                  <h6 className="font-medium text-gray-900 mb-1">Jawaban Kamu:</h6>
+                                  {feedback.userAnswer && Array.isArray(feedback.userAnswer) && feedback.userAnswer.length > 0 ? (
+                                    <ul className="list-disc pl-5 space-y-1">
+                                      {feedback.userAnswer.map((pair, idx) => (
+                                        <li key={idx} className="text-gray-900">
+                                          {question.leftOptions[pair[0]]} ↔ {question.rightOptions[pair[1]]}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  ) : (
+                                    <p className="text-red-800">Tidak dijawab</p>
+                                  )}
+                                </div>
+                                
+                                <div>
+                                  <h6 className="font-medium text-gray-900 mb-1">Jawaban Benar:</h6>
+                                  <ul className="list-disc pl-5 space-y-1">
+                                    {question.correctPairs.map((pair, idx) => (
+                                      <li key={idx} className="text-green-800">
+                                        {question.leftOptions[pair[0]]} ↔ {question.rightOptions[pair[1]]}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              </div>
+                            )}
                           </div>
                           
                           {feedback.explanation && (
