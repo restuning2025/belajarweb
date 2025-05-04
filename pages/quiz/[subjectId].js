@@ -35,6 +35,8 @@ export default function Quiz() {
   const [randomizedQuestions, setRandomizedQuestions] = useState([]);
   // Track if review section is open
   const [showReview, setShowReview] = useState(false);
+  // For CMC2 matching pairs questions - to track temporary UI state
+  const [matchPairs, setMatchPairs] = useState({});
   
   // Utility function to shuffle an array (Fisher-Yates algorithm)
   const shuffleArray = (array) => {
@@ -87,12 +89,63 @@ export default function Quiz() {
       
       // For matching pairs (CMC2) questions
       else if (question.type === QUESTION_TYPES.CMC2) {
-        // Only shuffle the order of options, not the pairs themselves
-        randomizedQuestion.leftOptions = shuffleArray([...question.leftOptions]);
-        randomizedQuestion.rightOptions = shuffleArray([...question.rightOptions]);
+        // Store original options before shuffling
+        const originalLeftOptions = [...question.leftOptions];
+        const originalRightOptions = [...question.rightOptions];
         
-        // We need to maintain the pairs mapping
-        randomizedQuestion.correctPairs = question.correctPairs;
+        // Store the original options and create semantic pairs if not present
+        randomizedQuestion.originalLeftOptions = originalLeftOptions;
+        randomizedQuestion.originalRightOptions = originalRightOptions;
+        
+        // Create semantic pairs from the correctPairs indices if not already present
+        if (!question.pairs) {
+          randomizedQuestion.pairs = question.correctPairs.map(([leftIdx, rightIdx]) => ({
+            left: originalLeftOptions[leftIdx],
+            right: originalRightOptions[rightIdx]
+          }));
+        } else {
+          randomizedQuestion.pairs = [...question.pairs]; // Copy the original pairs
+        }
+        
+        // Shuffle both columns
+        const shuffledLeftOptions = shuffleArray([...originalLeftOptions]);
+        const shuffledRightOptions = shuffleArray([...originalRightOptions]);
+        
+        // Add to randomized question
+        randomizedQuestion.leftOptions = shuffledLeftOptions;
+        randomizedQuestion.rightOptions = shuffledRightOptions;
+        
+        // Create mappings to track shuffled indices
+        randomizedQuestion.leftOriginalToRandom = {};
+        randomizedQuestion.rightOriginalToRandom = {};
+        randomizedQuestion.leftRandomToOriginal = {};
+        randomizedQuestion.rightRandomToOriginal = {};
+        
+        // Map original indices to randomized indices
+        originalLeftOptions.forEach((item, originalIndex) => {
+          const newIndex = shuffledLeftOptions.indexOf(item);
+          randomizedQuestion.leftOriginalToRandom[originalIndex] = newIndex;
+          randomizedQuestion.leftRandomToOriginal[newIndex] = originalIndex;
+        });
+        
+        originalRightOptions.forEach((item, originalIndex) => {
+          const newIndex = shuffledRightOptions.indexOf(item);
+          randomizedQuestion.rightOriginalToRandom[originalIndex] = newIndex;
+          randomizedQuestion.rightRandomToOriginal[newIndex] = originalIndex;
+        });
+        
+        // Store the original correctPairs for reference
+        randomizedQuestion.originalCorrectPairs = question.correctPairs;
+        
+        // Updated correct pairs with the new shuffled indices
+        const updatedCorrectPairs = question.correctPairs.map(pair => {
+          const [leftOriginalIndex, rightOriginalIndex] = pair;
+          const leftNewIndex = randomizedQuestion.leftOriginalToRandom[leftOriginalIndex];
+          const rightNewIndex = randomizedQuestion.rightOriginalToRandom[rightOriginalIndex];
+          return [leftNewIndex, rightNewIndex];
+        });
+        
+        randomizedQuestion.correctPairs = updatedCorrectPairs;
       }
       
       return randomizedQuestion;
@@ -248,58 +301,63 @@ export default function Quiz() {
   
   // Calculate score with flexible scoring system
   const getCorrectAnswers = () => {
+    // Initialize scoring data
     let totalScore = 0;
     const questionScores = {};
     const questionFeedback = {};
     
+    // Calculate score for each answered question
     Object.keys(answers).forEach(key => {
-      // Make sure the question exists in our randomized questions array
-      if (!randomizedQuestions[key]) return;
-      
-      const question = randomizedQuestions[key];
+      const questionIndex = parseInt(key);
+      const question = randomizedQuestions[questionIndex];
       const userAnswer = answers[key];
       let questionScore = 0;
-      let feedback = {
-        isCorrect: false,
-        explanation: question.explanation || '',
+      
+      // Generate unique key for score data
+      const scoreKey = `q-${questionIndex}`;
+      
+      // Feedback object to store detailed information
+      const feedback = {
         userAnswer: userAnswer,
-        correctAnswer: null,
+        isCorrect: false,
         partiallyCorrect: false
       };
       
       if (question.type === QUESTION_TYPES.MC) {
-        // For multiple choice, direct comparison
-        feedback.correctAnswer = question.correctAnswer;
-        if (userAnswer === question.correctAnswer) {
-          questionScore = 1; // Full point
-          feedback.isCorrect = true;
-        } else {
-          questionScore = 0; // No penalty for wrong answer
-          feedback.isCorrect = false;
+        // For standard multiple choice
+        if (userAnswer !== undefined) {
+          feedback.correctAnswer = question.correctAnswer;
+          
+          // Check if answer is correct
+          if (userAnswer === question.correctAnswer) {
+            questionScore = 1;
+            feedback.isCorrect = true;
+          } else {
+            questionScore = 0;
+            feedback.isCorrect = false;
+          }
         }
       } 
       
       else if (question.type === QUESTION_TYPES.CMC1) {
-        // For multiple answers with partial scoring
-        if (userAnswer && Array.isArray(userAnswer) && 
-            question.correctAnswers && Array.isArray(question.correctAnswers)) {
-          
+        // For multiple answer questions
+        if (userAnswer && Array.isArray(userAnswer)) {
           feedback.correctAnswer = question.correctAnswers;
           feedback.answerStatus = [];
           
-          // For each option, track if it's correct and selected
+          // Get detailed feedback for each option
           question.options.forEach((option, idx) => {
-            // Use the explanation text to override the marked answers if needed
+            // Determine if answer is mentioned in the explanation as a correct answer
+            // This allows us to override the automatic answer check with the explanation text
             const explanationText = question.explanation || '';
             const optionText = option.toLowerCase();
-            
-            // Check if option is mentioned as correct in explanation
             const isCorrectInExplanation = explanationText.toLowerCase().includes(optionText) && 
+              // Check that it's a positive mention (not saying "X is not a correct answer")
               !explanationText.toLowerCase().includes(`${optionText} bukan`) &&
               !explanationText.toLowerCase().includes(`bukan ${optionText}`);
-              
+            
             // Either use the explanation override or fallback to the default correct answers
-            const isMarkedCorrect = question.correctAnswers.includes(idx);
+            const isMarkedCorrect = question.correctAnswers && question.correctAnswers.includes(idx);
             const isReallyCorrect = isCorrectInExplanation || isMarkedCorrect;
             const isSelected = userAnswer.includes(idx);
             
@@ -496,6 +554,171 @@ export default function Quiz() {
                   <p className="text-[var(--muted)]">Persentase</p>
                 </div>
               </div>
+              
+              {/* Review Section */}
+              {showReview && (
+                <div className="mt-8 space-y-6">
+                  <h3 className="text-2xl font-bold mb-4 border-b pb-2">Ulasan Jawaban</h3>
+                  
+                  {randomizedQuestions.map((question, qIndex) => {
+                    const key = `q-${qIndex}`;
+                    const feedback = scoreData.questionFeedback[key];
+                    const userScore = scoreData.questionScores[key];
+                    
+                    // Skip questions with no feedback
+                    if (!feedback) return null;
+                    
+                    // Determine color based on score
+                    let scoreColor = "text-red-500";
+                    if (userScore === 1) scoreColor = "text-green-500";
+                    else if (userScore > 0) scoreColor = "text-yellow-500";
+                    
+                    return (
+                      <div key={key} className={`bg-[var(--card-foreground)] rounded-xl p-6 ${userScore === 1 ? 'border-l-4 border-green-500' : userScore > 0 ? 'border-l-4 border-yellow-500' : 'border-l-4 border-red-500'}`}>
+                        <div className="flex justify-between items-start">
+                          <h4 className="text-lg font-semibold">Pertanyaan {qIndex + 1}</h4>
+                          <div className="font-bold text-lg">
+                            <span className={scoreColor}>Skor: {userScore}</span>
+                            {userScore === 1 ? (
+                              <span className="ml-2 text-green-500">✓</span>
+                            ) : userScore === 0 ? (
+                              <span className="ml-2 text-red-500">✗</span>
+                            ) : (
+                              <span className="ml-2 text-yellow-500">⚠</span>
+                            )}
+                          </div>
+                        </div>
+                        
+                        <p className="text-[var(--foreground)] text-lg mt-3 mb-4 font-medium">{question.text || question.question}</p>
+                        
+                        {/* DISPLAY FOR MC QUESTIONS (SINGLE ANSWER) */}
+                        {question.type === QUESTION_TYPES.MC && (
+                          <div className="mt-4 space-y-2">
+                            <p className="font-medium mb-2">Ulasan Jawaban:</p>
+                            <div className="flex items-center">
+                              <div className="w-1/2 pr-4">
+                                <p className="font-medium mb-1">Jawaban Kamu:</p>
+                                <div className={`p-3 rounded-lg ${feedback.isCorrect ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'}`}>
+                                  {question.options[answers[qIndex]]} 
+                                  {feedback.isCorrect ? 
+                                    <span className="ml-2 text-green-600">✓</span> : 
+                                    <span className="ml-2 text-red-600">✗</span>}
+                                </div>
+                              </div>
+                              
+                              {!feedback.isCorrect && (
+                                <div className="w-1/2 pl-4">
+                                  <p className="font-medium mb-1">Jawaban Benar:</p>
+                                  <div className="p-3 bg-green-100 border border-green-300 rounded-lg">
+                                    {question.options[question.correctAnswer]} 
+                                    <span className="ml-2 text-green-600">✓</span>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* DISPLAY FOR CMC1 QUESTIONS (MULTIPLE ANSWERS) */}
+                        {question.type === QUESTION_TYPES.CMC1 && (
+                          <div className="mt-4">
+                            <p className="font-medium mb-2">Ulasan Jawaban:</p>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <p className="font-medium mb-1">Jawaban Kamu:</p>
+                                <ul className="list-disc pl-5 space-y-1">
+                                  {feedback.answerStatus && feedback.answerStatus
+                                    .filter(status => status.isSelected)
+                                    .map((status, idx) => (
+                                      <li key={idx} className={`${status.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+                                        {status.option}
+                                        {status.isCorrect ? 
+                                          <span className="ml-2 text-green-600">✓</span> : 
+                                          <span className="ml-2 text-red-600">✗</span>}
+                                      </li>
+                                  ))}
+                                  {feedback.answerStatus && 
+                                   feedback.answerStatus.filter(status => status.isSelected).length === 0 && (
+                                    <li className="text-gray-500">Tidak ada jawaban yang dipilih</li>
+                                  )}
+                                </ul>
+                              </div>
+                              
+                              <div>
+                                <p className="font-medium mb-1">Jawaban Benar:</p>
+                                <ul className="list-disc pl-5 space-y-1">
+                                  {feedback.answerStatus && feedback.answerStatus
+                                    .filter(status => status.isCorrectOption)
+                                    .map((status, idx) => (
+                                      <li key={idx} className="text-green-600">
+                                        {status.option}
+                                        <span className="ml-2 text-green-600">✓</span>
+                                      </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* DISPLAY FOR CMC2 QUESTIONS (MATCHING PAIRS) */}
+                        {question.type === QUESTION_TYPES.CMC2 && (
+                          <div className="mt-4">
+                            <p className="font-medium mb-2">Ulasan Jawaban:</p>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <p className="font-medium mb-1">Jawaban Kamu:</p>
+                                <ul className="space-y-2 list-none">
+                                  {answers[qIndex] && answers[qIndex].map(([leftIdx, rightIdx], idx) => {
+                                    const isCorrectPair = question.correctPairs && question.correctPairs.some(
+                                      ([correctLeft, correctRight]) => 
+                                        leftIdx === correctLeft && rightIdx === correctRight
+                                    );
+                                    
+                                    return (
+                                      <li key={idx} className={`flex items-center ${isCorrectPair ? 'text-green-600' : 'text-red-600'}`}>
+                                        <span>{question.leftColumn && question.leftColumn[leftIdx]} ⟹ {question.rightColumn && question.rightColumn[rightIdx]}</span>
+                                        {isCorrectPair ? 
+                                          <span className="ml-2 text-green-600">✓</span> : 
+                                          <span className="ml-2 text-red-600">✗</span>}
+                                      </li>
+                                    );
+                                  })}
+                                  {(!answers[qIndex] || answers[qIndex].length === 0) && (
+                                    <li className="text-gray-500">Tidak ada jawaban yang dipilih</li>
+                                  )}
+                                </ul>
+                              </div>
+                              
+                              <div>
+                                <p className="font-medium mb-1">Jawaban Benar:</p>
+                                <ul className="space-y-2 list-none">
+                                  {question.correctPairs && question.correctPairs.map(([leftIdx, rightIdx], idx) => (
+                                    <li key={idx} className="text-green-600 flex items-center">
+                                      <span>{question.leftColumn && question.leftColumn[leftIdx]} ⟹ {question.rightColumn && question.rightColumn[rightIdx]}</span>
+                                      <span className="ml-2 text-green-600">✓</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Explanation section */}
+                        {question.explanation && (
+                          <div className="mt-4 p-4 bg-blue-50 border border-blue-100 rounded-lg">
+                            <p className="font-medium text-blue-800 mb-1">Penjelasan:</p>
+                            <p className="text-gray-700">{question.explanation}</p>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
               
               {/* Toggle review section button */}
               <button
@@ -718,8 +941,8 @@ export default function Quiz() {
                                   {feedback.userAnswer && Array.isArray(feedback.userAnswer) && feedback.userAnswer.length > 0 ? (
                                     <ul className="list-disc pl-5 space-y-1">
                                       {feedback.userAnswer.map((pair, idx) => (
-                                        <li key={idx} className="text-gray-900">
-                                          {question.leftOptions[pair[0]]} ↔ {question.rightOptions[pair[1]]}
+                                        <li key={idx}>
+                                          {question.leftOptions[pair[0]]} ⟹ {question.rightOptions[pair[1]]}
                                         </li>
                                       ))}
                                     </ul>
@@ -731,11 +954,22 @@ export default function Quiz() {
                                 <div>
                                   <h6 className="font-medium text-gray-900 mb-1">Jawaban Benar:</h6>
                                   <ul className="list-disc pl-5 space-y-1">
-                                    {question.correctPairs.map((pair, idx) => (
-                                      <li key={idx} className="text-green-800">
-                                        {question.leftOptions[pair[0]]} ↔ {question.rightOptions[pair[1]]}
-                                      </li>
-                                    ))}
+                                    {/* If we have pairs array in the original format, use that for review */}
+                                    {question.pairs ? (
+                                      // Use the original semantic pairs (not indices)
+                                      question.pairs.map((pair, idx) => (
+                                        <li key={idx} className="text-green-800">
+                                          {pair.left} ⟹ {pair.right}
+                                        </li>
+                                      ))
+                                    ) : (
+                                      // Fallback to index-based if pairs not available
+                                      question.correctPairs && question.correctPairs.map((pair, idx) => (
+                                        <li key={idx}>
+                                          {question.leftOptions[pair[0]]} ⟹ {question.rightOptions[pair[1]]}
+                                        </li>
+                                      ))
+                                    )}
                                   </ul>
                                 </div>
                               </div>
@@ -758,7 +992,8 @@ export default function Quiz() {
               <div className="space-y-4 sm:space-y-0 sm:flex sm:gap-4 justify-center">
                 <button 
                   onClick={resetQuiz}
-                  className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-xl font-bold transition-all shadow-md text-lg flex items-center justify-center">
+                  className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-xl font-bold transition-all shadow-md text-lg flex items-center justify-center"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 16 16">
                     <path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
                     <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
@@ -894,56 +1129,101 @@ export default function Quiz() {
                 })}
               </div>
             )}
-            
-            {/* Matching pairs (CMC2) */}
+                        {/* Matching pairs (CMC2) */}
             {currentQuestion.type === QUESTION_TYPES.CMC2 && (
               <div className="flex flex-col md:flex-row gap-4">
                 {/* Left column */}
-                <div className="flex-1 space-y-3">
-                  <h3 className="font-medium mb-2">Kolom A</h3>
-                  {currentQuestion.leftOptions.map((option, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleLeftOptionSelect(index)}
-                      className={`w-full text-left p-4 rounded-lg transition-colors ${
-                        selectedLeftOption === index
-                          ? 'bg-[var(--primary)] text-white'
-                          : 'dark-card hover:bg-[var(--card-hover)]'
-                      }`}
-                    >
-                      {option}
-                    </button>
-                  ))}
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-600 mb-3 text-center">Kolom A</h3>
+                  {currentQuestion.leftOptions.map((option, index) => {
+                    // Check if this option has already been matched (moved outside the onClick)
+                    const isAlreadyMatched = answers[currentQuestionIndex] && 
+                      answers[currentQuestionIndex].some(pair => pair[0] === index);
+                    
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          if (!isAlreadyMatched) {
+                            // Store selected left option in matchPairs
+                            setMatchPairs({
+                              ...matchPairs,
+                              [currentQuestionIndex]: {
+                                ...matchPairs[currentQuestionIndex],
+                                left: index
+                              }
+                            });
+                          }
+                        }}
+                        className={`p-4 border-2 rounded-lg transition-all ${isAlreadyMatched ? 'bg-green-50 border-green-300 cursor-not-allowed' : 'cursor-pointer hover:border-blue-400'} ${
+                          matchPairs[currentQuestionIndex]?.left === index ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                        }`}
+                      >
+                        {option}
+                      </button>
+                    );
+                  })}
                 </div>
                 
                 {/* Right column */}
-                <div className="flex-1 space-y-3">
-                  <h3 className="font-medium mb-2">Kolom B</h3>
-                  {currentQuestion.rightOptions.map((option, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleRightOptionSelect(index)}
-                      className={`w-full text-left p-4 rounded-lg transition-colors ${
-                        'dark-card hover:bg-[var(--card-hover)]'
-                      }`}
-                    >
-                      {option}
-                    </button>
-                  ))}
+                <div className="flex-1">
+                  <h3 className="font-bold text-gray-600 mb-3 text-center">Kolom B</h3>
+                  {currentQuestion.rightOptions.map((option, index) => {
+                    // Check if this option has already been matched (moved outside onClick)
+                    const isAlreadyMatched = answers[currentQuestionIndex] && 
+                      answers[currentQuestionIndex].some(pair => pair[1] === index);
+                    
+                    const selectedLeft = matchPairs[currentQuestionIndex]?.left;
+                    
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          if (!isAlreadyMatched && selectedLeft !== undefined) {
+                            // Add the pair to answers
+                            const currentPairs = answers[currentQuestionIndex] || [];
+                            
+                            // Add the new pair
+                            const updatedPairs = [...currentPairs, [selectedLeft, index]];
+                            
+                            // Update answers
+                            setAnswers({
+                              ...answers,
+                              [currentQuestionIndex]: updatedPairs,
+                            });
+                            
+                            // Reset temporary selection
+                            setMatchPairs({
+                              ...matchPairs,
+                              [currentQuestionIndex]: {}
+                            });
+                          }
+                        }}
+                        className={`p-4 border-2 rounded-lg transition-all ${isAlreadyMatched ? 'bg-green-50 border-green-300 cursor-not-allowed' : 'cursor-pointer hover:border-blue-400'} ${
+                          matchPairs[currentQuestionIndex]?.right === index ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                        }`}
+                      >
+                        {option}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
             
             {/* Show current pairing status for CMC2 */}
-            {currentQuestion.type === QUESTION_TYPES.CMC2 && answers[currentQuestionIndex] && answers[currentQuestionIndex].length > 0 && (
-              <div className="mt-4 p-4 bg-[var(--card-foreground)] rounded-lg">
-                <h3 className="font-medium mb-2">Pasangan yang dipilih:</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  {answers[currentQuestionIndex].map((pair, index) => (
-                    <li key={index}>
-                      {currentQuestion.leftOptions[pair[0]]} ↔ {currentQuestion.rightOptions[pair[1]]}
-                    </li>
-                  ))}
+            {currentQuestion.type === QUESTION_TYPES.CMC2 && answers[currentQuestionIndex] && (
+              <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <h3 className="font-bold text-green-800 mb-2">Pasangan yang cocok:</h3>
+                <ul className="list-disc pl-6">
+                  {answers[currentQuestionIndex].map((match, idx) => {
+                    const [leftIndex, rightIndex] = match;
+                    return (
+                      <li key={idx} className="text-gray-700">
+                        <span className="font-medium">{currentQuestion.leftOptions[leftIndex]}</span> — <span className="font-medium">{currentQuestion.rightOptions[rightIndex]}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             )}
@@ -973,38 +1253,38 @@ export default function Quiz() {
             </div>
           )}
 
-          <div className="flex justify-end">
-            {/* Explanation section (displayed after answering a question) */}
-            {(currentQuestion.type === QUESTION_TYPES.MC && answers[currentQuestionIndex] !== undefined) || 
-             (currentQuestion.type === QUESTION_TYPES.CMC1 && submittedQuestions[currentQuestionIndex]) ? (
-              <div className="mt-6 p-4 bg-blue-50 border-2 border-blue-100 rounded-lg">
-                <h3 className="font-bold text-blue-800 mb-2">Penjelasan:</h3>
-                {currentQuestion.explanation ? (
-                  <p className="text-gray-700">{currentQuestion.explanation}</p>
+          {/* Explanation section (displayed after answering a question) */}
+          {(currentQuestion.type === QUESTION_TYPES.MC && answers[currentQuestionIndex] !== undefined) || 
+            (currentQuestion.type === QUESTION_TYPES.CMC1 && submittedQuestions[currentQuestionIndex]) ? (
+            <div className="mt-6 p-4 bg-blue-50 border-2 border-blue-100 rounded-lg">
+              <h3 className="font-bold text-blue-800 mb-2">Penjelasan:</h3>
+              {currentQuestion.explanation ? (
+                <p className="text-gray-700">{currentQuestion.explanation}</p>
+              ) : (
+                currentQuestion.type === QUESTION_TYPES.MC ? (
+                  <p className="text-gray-700">Jawaban yang benar adalah: <span className="font-bold">{currentQuestion.options[currentQuestion.correctAnswer]}</span></p>
                 ) : (
-                  currentQuestion.type === QUESTION_TYPES.MC ? (
-                    <p className="text-gray-700">Jawaban yang benar adalah: <span className="font-bold">{currentQuestion.options[currentQuestion.correctAnswer]}</span></p>
-                  ) : (
-                    <div className="text-gray-700">
-                      <p className="mb-2">Jawaban yang benar adalah:</p>
-                      <ul className="list-disc pl-5">
-                        {currentQuestion.correctAnswers.map((correctIndex, idx) => (
-                          <li key={idx} className="mb-1 font-medium">{currentQuestion.options[correctIndex]}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )
-                )}
-              </div>
-            ) : null}
-            
+                  <div className="text-gray-700">
+                    <p className="mb-2">Jawaban yang benar adalah:</p>
+                    <ul className="list-disc pl-5">
+                      {currentQuestion.correctAnswers.map((correctIndex, idx) => (
+                        <li key={idx} className="mb-1 font-medium">{currentQuestion.options[correctIndex]}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              )}
+            </div>
+          ) : null}
+          
+          <div className="flex justify-end">
             <button
               onClick={handleNext}
               disabled={answers[currentQuestionIndex] === undefined || 
                       (currentQuestion.type === QUESTION_TYPES.CMC1 && 
-                       (!answers[currentQuestionIndex] || answers[currentQuestionIndex].length === 0)) ||
+                      (!answers[currentQuestionIndex] || answers[currentQuestionIndex].length === 0)) ||
                       (currentQuestion.type === QUESTION_TYPES.CMC2 && 
-                       (!answers[currentQuestionIndex] || answers[currentQuestionIndex].length === 0))}
+                      (!answers[currentQuestionIndex] || answers[currentQuestionIndex].length === 0))}
               className={`mt-6 px-6 py-2 rounded-lg transition-opacity ${
                 answers[currentQuestionIndex] === undefined || 
                 (currentQuestion.type === QUESTION_TYPES.CMC1 && 
