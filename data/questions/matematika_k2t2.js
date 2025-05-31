@@ -1,13 +1,27 @@
 import { QUESTION_TYPES, DIFFICULTY_LEVELS, SUBJECTS } from '../questionSchema';
 
+// Updated topics for Matematika K2T2
+export const MATH_TOPICS = {
+  SATUAN_WAKTU: 'Satuan waktu & lama waktu',
+  KALIMAT_MATEMATIKA_PEMBAGIAN_PENJUMLAHAN: 'Kalimat Matematika - pembagian & penjumlahan',
+  PENJUMLAHAN_PEMBAGIAN_NILAI_TEMPAT: 'Penjumlahan & pembagian (nilai tempat)',
+  NILAI_TEMPAT_3_ANGKA_PENJUMLAHAN_PENGURANGAN: 'Nilai Tempat (3 angka) - penjumlahan & pengurangan',
+  NILAI_TEMPAT_3_ANGKA_PEMECAHAN_MASALAH: 'Nilai tempat (3 angka) - Pemecahan masalah',
+  KALIMAT_MATEMATIKA_PEMBAGIAN: 'Kalimat Matematika - pembagian',
+  KALIMAT_MATEMATIKA_PENJUMLAHAN: 'Kalimat Matematika - penjumlahan',
+  KALIMAT_MATEMATIKA_PENGURANGAN: 'Kalimat Matematika - pengurangan',
+  KALIMAT_MATEMATIKA_PERKALIAN: 'Kalimat Matematika - perkalian',
+  BANGUN_DATAR_RUANG: 'Bangun datar & bangun ruang'
+};
+
 export const questions = [
-  // Topic: Membaca jam analog dan digital (10 questions)
+  // Topic: Satuan waktu & lama waktu
   {
     id: 'math_k2t2_001',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.CLOCK_READING,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Jika jarum pendek jam menunjuk angka 7 dan jarum panjang menunjuk angka 6, pukul berapakah saat itu?',
     options: [
       'Pukul tujuh lebih tiga puluh menit',
@@ -24,7 +38,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.CLOCK_READING,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Jam digital menunjukkan angka 03:45. Bagaimana cara membaca waktu tersebut?',
     options: [
       'Pukul tiga lebih empat puluh lima menit',
@@ -41,7 +55,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.CLOCK_READING,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pilih pernyataan yang benar tentang cara membaca jam:',
     options: [
       'Jarum pendek menunjukkan jam',
@@ -59,7 +73,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.CLOCK_READING,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pasangkan waktu pada jam digital dengan cara membacanya yang benar:',
     leftOptions: [
       '09:15',
@@ -87,7 +101,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.CLOCK_READING,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Jika sekarang pukul 5 sore, jam digital akan menunjukkan:',
     options: [
       '17:00',
@@ -99,13 +113,13 @@ export const questions = [
     explanation: 'Pukul 5 sore dalam format 24 jam ditulis sebagai 17:00'
   },
 
-  // Topic: Konversi satuan waktu (10 questions)
+  // Topic: Satuan waktu & lama waktu - Konversi
   {
     id: 'math_k2t2_006',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: '1 jam = ... menit',
     options: [
       '60 menit',
@@ -122,7 +136,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: '1 hari = ... jam',
     options: [
       '24 jam',
@@ -139,7 +153,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: '2 jam = ... menit',
     options: [
       '120 menit',
@@ -156,7 +170,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pilih konversi waktu yang benar:',
     options: [
       '1 menit = 60 detik',
@@ -174,7 +188,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pasangkan satuan waktu dengan konversinya yang benar:',
     leftOptions: [
       '1 jam',
@@ -203,7 +217,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.DURATION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Andi mulai belajar pukul 15:00 dan selesai pukul 16:30. Berapa lama Andi belajar?',
     options: [
       '1 jam 30 menit',
@@ -220,7 +234,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.DURATION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Budi berangkat ke sekolah pukul 06:30 dan tiba di sekolah pukul 07:15. Berapa lama perjalanan Budi ke sekolah?',
     options: [
       '45 menit',
@@ -237,7 +251,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.DURATION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pilih kegiatan yang biasanya memerlukan waktu lebih dari 1 jam:',
     options: [
       'Menonton film',
@@ -255,7 +269,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.DURATION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Siti mulai mengerjakan PR pukul 19:00 dan selesai pukul 20:15. Berapa menit Siti mengerjakan PR?',
     options: [
       '75 menit',
@@ -272,7 +286,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.DURATION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pasangkan kegiatan dengan perkiraan waktu yang dibutuhkan:',
     leftOptions: [
       'Menyikat gigi',
@@ -295,13 +309,13 @@ export const questions = [
     explanation: 'Estimasi durasi: menyikat gigi sekitar 3 menit, tidur malam 8 jam, belajar di sekolah 6 jam, dan makan malam 30 menit'
   },
 
-  // Topic: Alat ukur waktu (10 questions)
+  // Topic: Satuan waktu & lama waktu - Alat ukur
   {
     id: 'math_k2t2_016',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_TOOLS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Alat untuk mengukur waktu dalam hitungan detik adalah:',
     options: [
       'Stopwatch',
@@ -318,7 +332,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_TOOLS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Alat berikut yang BUKAN merupakan alat pengukur waktu adalah:',
     options: [
       'Termometer',
@@ -335,7 +349,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_TOOLS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pilih alat pengukur waktu:',
     options: [
       'Jam matahari',
@@ -353,7 +367,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.DURATION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pasangkan aktivitas berikut dengan durasi waktunya yang paling sesuai:',
     leftOptions: [
       'Waktu istirahat sekolah',
@@ -381,7 +395,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_TOOLS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Manakah alat pengukur waktu yang paling kuno?',
     options: [
       'Jam matahari',
@@ -398,7 +412,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_TOOLS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pasangkan alat pengukur waktu dengan ciri-cirinya:',
     leftOptions: [
       'Jam digital',
@@ -427,7 +441,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Jika sekarang pukul 09:30, 2 jam kemudian pukul berapa?',
     options: [
       'Pukul 11:30',
@@ -444,7 +458,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Jika sekarang pukul 10:45, 30 menit yang lalu pukul berapa?',
     options: [
       'Pukul 10:15',
@@ -461,7 +475,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pukul 08:50 ditambah 25 menit menjadi pukul:',
     options: [
       'Pukul 09:15',
@@ -478,7 +492,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pukul 07:15 ditambah 1 jam 50 menit menjadi pukul:',
     options: [
       'Pukul 09:05',
@@ -495,7 +509,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pilih operasi waktu yang benar:',
     options: [
       '10:30 + 20 menit = 10:50',
@@ -513,7 +527,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Jika sekarang pukul 23:45, 30 menit kemudian pukul berapa?',
     options: [
       'Pukul 00:15',
@@ -530,7 +544,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pasangkan operasi waktu dengan hasilnya yang benar:',
     leftOptions: [
       '07:30 + 2 jam 45 menit',
@@ -558,7 +572,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Dina berangkat ke sekolah pukul 06:30. Jika ia membutuhkan waktu 45 menit untuk sampai, pukul berapa Dina tiba di sekolah?',
     options: [
       'Pukul 07:15',
@@ -575,7 +589,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Jika sekarang pukul 14:00, 2 jam yang lalu pukul berapa?',
     options: [
       'Pukul 12:00',
@@ -592,7 +606,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Kereta berangkat pukul 08:15 dan tiba di stasiun tujuan pukul 10:45. Berapa lama perjalanan kereta?',
     options: [
       '2 jam 30 menit',
@@ -609,7 +623,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pasangkan soal dengan jawabannya:',
     leftOptions: [
       '2 jam + 45 menit',
@@ -638,7 +652,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.CLOCK_READING,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Jika jarum pendek jam berada di antara angka 3 dan 4, serta jarum panjang menunjuk ke angka 6, pukul berapakah saat itu?',
     options: [
       'Pukul tiga lebih tiga puluh menit',
@@ -655,7 +669,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.CLOCK_READING,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Ketika jarum pendek jam berada di antara angka 8 dan 9, serta jarum panjang menunjuk ke angka 9, waktu yang ditunjukkan adalah...',
     options: [
       'Pukul delapan lebih empat puluh lima menit',
@@ -673,7 +687,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: '1 menit = ... detik',
     options: [
       '60 detik',
@@ -690,7 +704,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: '3 jam = ... menit',
     options: [
       '180 menit',
@@ -707,7 +721,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pilih konversi waktu yang benar:',
     options: [
       '2 jam = 120 menit',
@@ -725,7 +739,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: '2 hari = ... jam',
     options: [
       '48 jam',
@@ -742,7 +756,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pasangkan satuan waktu dengan konversinya yang tepat:',
     leftOptions: [
       '1 jam',
@@ -771,7 +785,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.DURATION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Berapa lama biasanya kegiatan bermain sepak bola?',
     options: [
       'Sekitar 90 menit',
@@ -788,7 +802,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.DURATION,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pilih kegiatan yang biasanya memerlukan waktu kurang dari 5 menit:',
     options: [
       'Mencuci tangan',
@@ -807,7 +821,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_TOOLS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Alat apa yang biasa digunakan untuk mengukur waktu dalam lomba lari?',
     options: [
       'Stopwatch',
@@ -824,7 +838,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_TOOLS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Apa fungsi utama dari kalender?',
     options: [
       'Menunjukkan tanggal, bulan, dan tahun',
@@ -841,7 +855,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_TOOLS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pilih pernyataan yang benar tentang alat pengukur waktu:',
     options: [
       'Jam digital menggunakan angka untuk menunjukkan waktu',
@@ -860,7 +874,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Jika Budi bangun pukul 05:00 dan berangkat sekolah 1 jam kemudian, pukul berapa Budi berangkat sekolah?',
     options: [
       'Pukul 06:00',
@@ -877,7 +891,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Siti belajar dari pukul 19:15 sampai pukul 20:45. Berapa lama Siti belajar?',
     options: [
       '1 jam 30 menit',
@@ -894,7 +908,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Rudi mulai mengerjakan PR pukul 15:20. Jika ia mengerjakan selama 1 jam 45 menit, pukul berapa Rudi selesai mengerjakan PR?',
     options: [
       'Pukul 17:05',
@@ -911,7 +925,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pilih perhitungan waktu yang benar:',
     options: [
       '10:15 + 30 menit = 10:45',
@@ -929,7 +943,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Film dimulai pukul 18:45 dan selesai pukul 20:30. Jika ada jeda iklan 15 menit, berapa lama durasi film tersebut?',
     options: [
       '1 jam 30 menit',
@@ -946,7 +960,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.MATH.id,
-    topic: SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS,
+    topic: MATH_TOPICS.SATUAN_WAKTU,
     question: 'Pasangkan soal dengan jawabannya:',
     leftOptions: [
       '14:25 + 1 jam 45 menit',
@@ -975,11 +989,16 @@ export const metadata = {
   subject: SUBJECTS.REGULAR.MATH.id,
   totalQuestions: 50,
   topicDistribution: {
-    [SUBJECTS.REGULAR.MATH.topics.CLOCK_READING]: 12,     // 24%
-    [SUBJECTS.REGULAR.MATH.topics.TIME_CONVERSION]: 10,    // 20%
-    [SUBJECTS.REGULAR.MATH.topics.DURATION]: 12,           // 24%
-    [SUBJECTS.REGULAR.MATH.topics.TIME_TOOLS]: 8,          // 16%
-    [SUBJECTS.REGULAR.MATH.topics.TIME_OPERATIONS]: 8       // 16%
+    [MATH_TOPICS.SATUAN_WAKTU]: 15,                                       // 30%
+    [MATH_TOPICS.KALIMAT_MATEMATIKA_PEMBAGIAN_PENJUMLAHAN]: 5,             // 10%
+    [MATH_TOPICS.PENJUMLAHAN_PEMBAGIAN_NILAI_TEMPAT]: 5,                   // 10%
+    [MATH_TOPICS.NILAI_TEMPAT_3_ANGKA_PENJUMLAHAN_PENGURANGAN]: 5,         // 10%
+    [MATH_TOPICS.NILAI_TEMPAT_3_ANGKA_PEMECAHAN_MASALAH]: 4,               // 8%
+    [MATH_TOPICS.KALIMAT_MATEMATIKA_PEMBAGIAN]: 3,                         // 6%
+    [MATH_TOPICS.KALIMAT_MATEMATIKA_PENJUMLAHAN]: 3,                       // 6%
+    [MATH_TOPICS.KALIMAT_MATEMATIKA_PENGURANGAN]: 3,                       // 6%
+    [MATH_TOPICS.KALIMAT_MATEMATIKA_PERKALIAN]: 3,                         // 6%
+    [MATH_TOPICS.BANGUN_DATAR_RUANG]: 4                                    // 8%
   },
   difficultyDistribution: {
     [DIFFICULTY_LEVELS.EASY]: 15,    // 30%

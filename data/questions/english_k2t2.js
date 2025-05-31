@@ -1,13 +1,27 @@
 import { QUESTION_TYPES, DIFFICULTY_LEVELS, SUBJECTS } from '../questionSchema';
 
+// Updated topics for English K2T2
+export const ENGLISH_TOPICS = {
+  PARTS_OF_BODY: 'Parts of the body',
+  HEALTHY_HABITS: 'Healthy habits',
+  TOO_AND_ENOUGH: 'Too & enough',
+  CELEBRATIONS: 'Celebrations',
+  FAMILY_MEMBERS: 'Family members',
+  IRREGULAR_VERBS: 'Irregular verbs',
+  PAST_TENSE_VERBS: 'Past tense verbs',
+  PAST_TENSE_QUESTIONS: 'Past tense questions',
+  ADVERBS: 'Adverbs',
+  PREPOSITIONS: 'Prepositions'
+};
+
 export const questions = [
-  // Topic: Healthy habits: parts of the body
+  // Topic: Parts of the body
   {
     id: 'eng_k2t2_001',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Which sentence correctly describes what we use our legs for?',
     options: [
       'We use our legs to walk',
@@ -24,7 +38,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Which body part do we use to smell?',
     options: [
       'Nose',
@@ -41,7 +55,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Choose all parts of the human face:',
     options: [
       'Eyes',
@@ -59,7 +73,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Which part of the body do we use for walking?',
     options: [
       'Legs',
@@ -76,7 +90,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Match the body parts with their functions:',
     leftOptions: [
       'Eyes',
@@ -99,13 +113,13 @@ export const questions = [
     explanation: 'Eyes are used for seeing, ears for hearing, nose for smelling, and hands for holding things'
   },
 
-  // Topic: Healthy habits: routines
+  // Topic: Healthy habits
   {
     id: 'eng_k2t2_006',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.HEALTHY_HABITS,
     question: 'Choose all healthy habits:',
     options: [
       'Brush teeth twice a day',
@@ -122,7 +136,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.HEALTHY_HABITS,
     question: 'Which of these are healthy morning routines?',
     options: [
       'Eating breakfast',
@@ -140,7 +154,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.HEALTHY_HABITS,
     question: 'What time should children go to bed?',
     options: [
       'Around 8-9 PM',
@@ -152,13 +166,13 @@ export const questions = [
     explanation: 'Children should go to bed early, around 8-9 PM, to get enough sleep for their growth and development'
   },
 
-  // Topic: Healthy habits: past tense
+  // Topic: Past tense verbs
   {
     id: 'eng_k2t2_009',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'What is the past tense of "eat"?',
     options: [
       'Ate',
@@ -175,7 +189,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Fill in the blank: "Yesterday, I _____ my teeth twice."',
     options: [
       'brushed',
@@ -192,7 +206,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.TOO_AND_ENOUGH,
     question: 'Select all sentences that use the past tense correctly:',
     options: [
       'She washed her hands before eating.',
@@ -205,13 +219,12 @@ export const questions = [
     explanation: 'Correctly used past tense: "washed" (past of wash), "played" (past of play), and "went" (past of go)'
   },
 
-  // Topic: Healthy habits: "too" & "enough"
   {
     id: 'eng_k2t2_012',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.TOO_AND_ENOUGH,
     question: 'Which sentence uses "too" correctly?',
     options: [
       'The soup is too hot to eat now.',
@@ -228,7 +241,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.TOO_AND_ENOUGH,
     question: 'Which sentence uses "enough" correctly?',
     options: [
       'I did not sleep enough last night.',
@@ -245,7 +258,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.TOO_AND_ENOUGH,
     question: 'Match these sentences with their correct meanings:',
     leftOptions: [
       'The water is too cold.',
@@ -268,13 +281,13 @@ export const questions = [
     explanation: '"Too" indicates excess/excessive, while "enough" indicates a sufficient amount or degree'
   },
 
-  // Topic: Celebration time: vocabulary
+  // Topic: Celebrations
   {
     id: 'eng_k2t2_015',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'What do people usually do at birthday parties?',
     options: [
       'Blow out candles on a cake',
@@ -291,7 +304,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Select all words related to celebrations:',
     options: [
       'Gift',
@@ -309,7 +322,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'What do we call the colorful paper decorations that hang from the ceiling at parties?',
     options: [
       'Streamers',
@@ -321,13 +334,13 @@ export const questions = [
     explanation: 'Streamers are long strips of colorful paper used as decorations at parties'
   },
 
-  // Topic: Celebration time: grammar (classifying, irregular verbs, past tense, forming questions)
+  // Topic: Irregular verbs
   {
     id: 'eng_k2t2_018',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.IRREGULAR_VERBS,
     question: 'Which of these is an irregular verb?',
     options: [
       'Give - gave',
@@ -344,7 +357,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Select all irregular verbs:',
     options: [
       'Eat - ate',
@@ -362,7 +375,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Which question is formed correctly?',
     options: [
       'Did you go to the party yesterday?',
@@ -379,7 +392,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Match these verbs with their correct past tense:',
     leftOptions: [
       'Give',
@@ -407,7 +420,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Which is the correct way to form a question about past activities?',
     options: [
       'Did they celebrate her birthday last week?',
@@ -419,13 +432,13 @@ export const questions = [
     explanation: 'To form questions in the past tense with "did," use the structure: Did + subject + base form of verb (not past tense)'
   },
 
-  // Additional Healthy Habits questions
+  // Additional Healthy habits questions
   {
     id: 'eng_k2t2_023',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Which part of the body do we use to hear sounds?',
     options: [
       'Ears',
@@ -442,7 +455,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.HEALTHY_HABITS,
     question: 'Which of these is a healthy habit?',
     options: [
       'Washing hands before eating',
@@ -459,7 +472,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Select all good habits for taking care of your teeth:',
     options: [
       'Brushing twice a day',
@@ -477,7 +490,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Which sentence uses "too" correctly?',
     options: [
       'The soup is too hot to eat right now.',
@@ -494,7 +507,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Match each body part with the correct action:',
     leftOptions: [
       'Teeth',
@@ -522,7 +535,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'How many times a day should you brush your teeth?',
     options: [
       'Twice',
@@ -539,7 +552,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Choose the correct past tense for this sentence: "Yesterday, I ___ my teeth three times."',
     options: [
       'brushed',
@@ -556,7 +569,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Select all sentences with correct grammar:',
     options: [
       'I am not strong enough to lift that box.',
@@ -574,7 +587,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'What do we use to clean between our teeth?',
     options: [
       'Dental floss',
@@ -591,7 +604,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Which sentence is in the past tense?',
     options: [
       'I slept for eight hours last night.',
@@ -608,7 +621,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Select all activities that are part of a healthy lifestyle:',
     options: [
       'Regular exercise',
@@ -626,7 +639,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'What should you do before eating a meal?',
     options: [
       'Wash your hands',
@@ -643,7 +656,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS,
+    topic: ENGLISH_TOPICS.PARTS_OF_BODY,
     question: 'Match each daily routine with the best time to do it:',
     leftOptions: [
       'Brush teeth',
@@ -671,7 +684,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'What do people often have at a birthday party?',
     options: [
       'Cake',
@@ -688,7 +701,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'What do we call the colorful paper objects that burst and contain small toys or candies?',
     options: [
       'Crackers',
@@ -705,7 +718,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Select all things you might find at a birthday party:',
     options: [
       'Presents',
@@ -723,7 +736,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'What do people sing at a birthday party?',
     options: [
       'Happy Birthday song',
@@ -740,7 +753,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Match each celebration with what people typically celebrate:',
     leftOptions: [
       'Birthday',
@@ -768,7 +781,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Which is the correct past tense form: "Last year, we ___ New Year together."',
     options: [
       'celebrated',
@@ -785,7 +798,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'What do people wrap birthday presents in?',
     options: [
       'Colorful paper',
@@ -802,7 +815,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Select all irregular past tense verbs:',
     options: [
       'Gave',
@@ -820,7 +833,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Complete the question: "___ did you get for your birthday?"',
     options: [
       'What',
@@ -837,7 +850,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'What is put on top of a birthday cake?',
     options: [
       'Candles',
@@ -854,7 +867,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Match each celebration with the correct greeting:',
     leftOptions: [
       'Birthday',
@@ -882,7 +895,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Which sentence is grammatically correct?',
     options: [
       'Where did they go for the celebration?',
@@ -899,7 +912,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'What do people say before eating at a celebration?',
     options: [
       'Enjoy your meal',
@@ -916,7 +929,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'Select all sentences that use the past tense correctly:',
     options: [
       'She blew out the candles.',
@@ -934,7 +947,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.ENGLISH.id,
-    topic: SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION,
+    topic: ENGLISH_TOPICS.CELEBRATIONS,
     question: 'What does someone do after receiving a gift?',
     options: [
       'Say "thank you"',
@@ -949,8 +962,16 @@ export const questions = [
 
 // Additional metadata for learning tracking
 export const topicDistribution = {
-  [SUBJECTS.REGULAR.ENGLISH.topics.HEALTHY_HABITS]: 25,  // 50%
-  [SUBJECTS.REGULAR.ENGLISH.topics.CELEBRATION]: 25      // 50%
+  [ENGLISH_TOPICS.PARTS_OF_BODY]: 5,           // 10%
+  [ENGLISH_TOPICS.HEALTHY_HABITS]: 5,          // 10%
+  [ENGLISH_TOPICS.TOO_AND_ENOUGH]: 5,          // 10%
+  [ENGLISH_TOPICS.CELEBRATIONS]: 5,            // 10%
+  [ENGLISH_TOPICS.FAMILY_MEMBERS]: 5,          // 10%
+  [ENGLISH_TOPICS.IRREGULAR_VERBS]: 5,         // 10%
+  [ENGLISH_TOPICS.PAST_TENSE_VERBS]: 5,        // 10%
+  [ENGLISH_TOPICS.PAST_TENSE_QUESTIONS]: 5,    // 10%
+  [ENGLISH_TOPICS.ADVERBS]: 5,                 // 10%
+  [ENGLISH_TOPICS.PREPOSITIONS]: 5             // 10%
 };
 
 // Question type distribution

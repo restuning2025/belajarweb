@@ -1,5 +1,19 @@
 import { QUESTION_TYPES, DIFFICULTY_LEVELS, SUBJECTS } from '../questionSchema';
 
+// Define topic constants for PAI (Pendidikan Agama Islam)
+export const PAI_TOPICS = {
+  ADAB_ETIQUETTE: 'Adab dan etika sehari-hari',
+  SURAH_ALKAFIRUN: 'Surah Al-Kafirun',
+  PROPHETS_STORIES: 'Kisah para nabi',
+  PRAYER_DHIKR: 'Doa dan dzikir',
+  ISLAMIC_VALUES: 'Nilai-nilai Islam',
+  AKHLAK: 'Akhlak terpuji',
+  ASMAUL_HUSNA: 'Asmaul Husna',
+  SIRAH_NABAWIYAH: 'Sirah Nabawiyah',
+  ISLAMIC_MANNERS: 'Adab Islami',
+  RAMADAN_FASTING: 'Puasa Ramadan'
+};
+
 export const questions = [
   // Topic: Adab bersin & menguap
   {
@@ -7,7 +21,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.ETIQUETTE,
+    topic: PAI_TOPICS.ADAB_ETIQUETTE,
     question: 'Apa yang seharusnya diucapkan ketika bersin?',
     options: [
       'Alhamdulillah',
@@ -24,7 +38,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.ETIQUETTE,
+    topic: PAI_TOPICS.ADAB_ETIQUETTE,
     question: 'Pilih semua adab yang benar saat menguap:',
     options: [
       'Menutup mulut dengan tangan',
@@ -42,7 +56,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.ETIQUETTE,
+    topic: PAI_TOPICS.ADAB_ETIQUETTE,
     question: 'Jika ada orang yang bersin dan mengucapkan "Alhamdulillah", apa yang sebaiknya kita ucapkan?',
     options: [
       'Yarhamukallah',
@@ -59,7 +73,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.ETIQUETTE,
+    topic: PAI_TOPICS.ADAB_ETIQUETTE,
     question: 'Mengapa kita dianjurkan untuk menutup mulut saat menguap?',
     options: [
       'Agar setan tidak masuk ke mulut kita',
@@ -76,7 +90,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.ETIQUETTE,
+    topic: PAI_TOPICS.ADAB_ETIQUETTE,
     question: 'Pasangkan ucapan dengan situasinya:',
     leftOptions: [
       'Alhamdulillah',
@@ -105,7 +119,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN,
+    topic: PAI_TOPICS.SURAH_ALKAFIRUN,
     question: 'Surah Al-Kafirun termasuk golongan surah?',
     options: [
       'Makkiyah',
@@ -122,7 +136,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN,
+    topic: PAI_TOPICS.SURAH_ALKAFIRUN,
     question: 'Berapa jumlah ayat dalam surah Al-Kafirun?',
     options: [
       '6 ayat',
@@ -139,7 +153,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN,
+    topic: PAI_TOPICS.SURAH_ALKAFIRUN,
     question: 'Pilih arti yang benar dari ayat "Qul yā-ayyuhal-kāfirūn":',
     options: [
       'Katakanlah: "Hai orang-orang kafir"',
@@ -157,7 +171,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN,
+    topic: PAI_TOPICS.SURAH_ALKAFIRUN,
     question: 'Apa tema utama yang dibahas dalam surah Al-Kafirun?',
     options: [
       'Toleransi beragama',
@@ -174,7 +188,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN,
+    topic: PAI_TOPICS.SURAH_ALKAFIRUN,
     question: 'Pasangkan potongan ayat dengan artinya:',
     leftOptions: [
       'Qul yā-ayyuhal-kāfirūn',
@@ -203,7 +217,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Nabi Muhammad SAW lahir pada tahun?',
     options: [
       'Tahun Gajah',
@@ -220,7 +234,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Siapa nama ibu Nabi Muhammad SAW?',
     options: [
       'Siti Aminah',
@@ -237,7 +251,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Pilih nama-nama nabi yang termasuk Ulul Azmi:',
     options: [
       'Nabi Muhammad SAW',
@@ -255,7 +269,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Apa mukjizat terbesar Nabi Muhammad SAW?',
     options: [
       'Al-Quran',
@@ -272,7 +286,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Pasangkan nabi dengan mukjizatnya:',
     leftOptions: [
       'Nabi Muhammad SAW',
@@ -301,7 +315,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Bacaan dzikir setelah shalat yang artinya "Maha Suci Allah" adalah...',
     options: [
       'Subhanallah',
@@ -318,7 +332,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Berapa kali bacaan tasbih, tahmid, dan takbir yang dianjurkan setelah shalat?',
     options: [
       '33 kali',
@@ -335,7 +349,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Pilih bacaan dzikir yang dibaca setelah shalat:',
     options: [
       'Subhanallah',
@@ -353,7 +367,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Doa memohon kebaikan dunia dan akhirat adalah...',
     options: [
       'Rabbana atina fid-dunya hasanah wa fil-akhirati hasanah',
@@ -370,7 +384,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Pasangkan dzikir dengan artinya:',
     leftOptions: [
       'Subhanallah',
@@ -399,7 +413,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.ETIQUETTE,
+    topic: PAI_TOPICS.ADAB_ETIQUETTE,
     question: 'Apa yang seharusnya dikatakan oleh seseorang ketika mendengar orang lain bersin dan mengucapkan "Alhamdulillah"?',
     options: [
       'Yarhamukallah',
@@ -416,7 +430,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.ETIQUETTE,
+    topic: PAI_TOPICS.ADAB_ETIQUETTE,
     question: 'Apa yang sebaiknya dilakukan jika kita bersin saat berada di tempat umum?',
     options: [
       'Menutup mulut dan hidung dengan tangan atau tisu',
@@ -433,7 +447,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.ETIQUETTE,
+    topic: PAI_TOPICS.ADAB_ETIQUETTE,
     question: 'Pilih adab-adab yang benar saat bersin:',
     options: [
       'Menutup mulut dan hidung',
@@ -452,7 +466,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN,
+    topic: PAI_TOPICS.SURAH_ALKAFIRUN,
     question: 'Apa tema utama dari surah Al-Kafirun?',
     options: [
       'Toleransi dalam beragama',
@@ -469,7 +483,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN,
+    topic: PAI_TOPICS.SURAH_ALKAFIRUN,
     question: 'Apa arti dari ayat "Lakum dīnukum waliya dīn" dalam surah Al-Kafirun?',
     options: [
       'Untukmu agamamu, dan untukku agamaku',
@@ -486,7 +500,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN,
+    topic: PAI_TOPICS.SURAH_ALKAFIRUN,
     question: 'Pasangkan ayat surah Al-Kafirun dengan urutan yang benar:',
     leftOptions: [
       'Qul yā-ayyuhal-kāfirūn',
@@ -515,7 +529,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Siapa nama kakek Nabi Muhammad SAW yang merawat beliau setelah ibunya wafat?',
     options: [
       'Abdul Muthalib',
@@ -532,7 +546,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Nabi Muhammad SAW pertama kali menerima wahyu di...',
     options: [
       'Gua Hira',
@@ -549,7 +563,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Pilih sifat-sifat yang dimiliki oleh Nabi Muhammad SAW:',
     options: [
       'Sidiq (jujur)',
@@ -567,7 +581,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Apa nama lain dari Nabi Muhammad SAW?',
     options: [
       'Al-Amin',
@@ -584,7 +598,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Pasangkan nabi dengan kisahnya yang benar:',
     leftOptions: [
       'Nabi Ibrahim AS',
@@ -613,7 +627,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Bacaan dzikir apa yang artinya "Segala puji bagi Allah"?',
     options: [
       'Alhamdulillah',
@@ -630,7 +644,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Apa manfaat berdzikir setelah shalat?',
     options: [
       'Menentramkan hati dan mendekatkan diri kepada Allah',
@@ -647,7 +661,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Pilih doa-doa yang biasa dibaca setelah shalat:',
     options: [
       'Doa kebaikan dunia dan akhirat',
@@ -665,7 +679,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Bacaan istighfar yang benar adalah...',
     options: [
       'Astaghfirullahal \'adzim',
@@ -682,7 +696,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Pasangkan dzikir dengan waktu yang tepat untuk membacanya:',
     leftOptions: [
       'Bismillahirrahmanirrahim',
@@ -711,7 +725,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.ETIQUETTE,
+    topic: PAI_TOPICS.ADAB_ETIQUETTE,
     question: 'Apa adab yang benar ketika akan tidur?',
     options: [
       'Berwudhu, membaca doa, dan tidur menghadap ke kanan',
@@ -728,7 +742,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN,
+    topic: PAI_TOPICS.SURAH_ALKAFIRUN,
     question: 'Kapan waktu yang disunnahkan untuk membaca surah Al-Kafirun?',
     options: [
       'Saat shalat Subuh dan sebelum tidur',
@@ -745,7 +759,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES,
+    topic: PAI_TOPICS.PROPHETS_STORIES,
     question: 'Apa hikmah dari kisah Nabi Muhammad SAW yang dapat kita teladani?',
     options: [
       'Kesabaran dan akhlak mulia dalam menghadapi kesulitan',
@@ -762,7 +776,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PAI.id,
-    topic: SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER,
+    topic: PAI_TOPICS.PRAYER_DHIKR,
     question: 'Apa doa setelah shalat yang mengandung permohonan kebaikan dunia dan akhirat?',
     options: [
       'Rabbana atina fid-dunya hasanah wa fil-akhirati hasanah wa qina adhaban-nar',
@@ -777,10 +791,16 @@ export const questions = [
 
 // Additional metadata for learning tracking
 export const topicDistribution = {
-  [SUBJECTS.REGULAR.PAI.topics.ETIQUETTE]: 10,            // 25%
-  [SUBJECTS.REGULAR.PAI.topics.SURAH_ALKAFIRUN]: 10,      // 25% 
-  [SUBJECTS.REGULAR.PAI.topics.PROPHETS_STORIES]: 10,      // 25%
-  [SUBJECTS.REGULAR.PAI.topics.DHIKR_PRAYER]: 10           // 25%
+  [PAI_TOPICS.ADAB_ETIQUETTE]: 10,        // 25%
+  [PAI_TOPICS.SURAH_ALKAFIRUN]: 10,       // 25% 
+  [PAI_TOPICS.PROPHETS_STORIES]: 10,       // 25%
+  [PAI_TOPICS.PRAYER_DHIKR]: 10,           // 25%
+  [PAI_TOPICS.AKHLAK]: 0,                 // 0%
+  [PAI_TOPICS.ISLAMIC_VALUES]: 0,          // 0%
+  [PAI_TOPICS.ASMAUL_HUSNA]: 0,            // 0%
+  [PAI_TOPICS.SIRAH_NABAWIYAH]: 0,         // 0%
+  [PAI_TOPICS.ISLAMIC_MANNERS]: 0,         // 0%
+  [PAI_TOPICS.RAMADAN_FASTING]: 0          // 0%
 };
 
 // Question type distribution

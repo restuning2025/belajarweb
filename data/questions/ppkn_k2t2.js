@@ -1,13 +1,25 @@
 import { QUESTION_TYPES, DIFFICULTY_LEVELS, SUBJECTS } from '../questionSchema';
 
+// Updated topics for PPKN K2T2
+export const PPKN_TOPICS = {
+  KOMUNIKASI_EFEKTIF: 'Komunikasi efektif',
+  SIKAP_DEMOKRATIS: 'Sikap demokratis',
+  KERJASAMA_TETANGGA: 'Kerjasama dalam Lingkungan Tetangga',
+  KEJUJURAN: 'Kejujuran',
+  KEDISIPLINAN: 'Kedisiplinan',
+  GOTONG_ROYONG: 'Gotong royong dalam lingkungan tetangga',
+  LAPANG_DADA: 'Lapang dada',
+  SENANG_BEKERJA: 'Senang bekerja'
+};
+
 export const questions = [
-  // Topic: Life skills: komunikasi efektif
+  // Topic: Komunikasi efektif
   {
     id: 'ppkn_k2t2_001',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Ketika berbicara dengan orang yang lebih tua, sikap yang tepat adalah...',
     options: [
       'Menggunakan bahasa yang sopan dan menatap mata lawan bicara',
@@ -24,7 +36,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Apa yang harus kita lakukan ketika ada teman yang sedang berbicara di depan kelas?',
     options: [
       'Mendengarkan dengan penuh perhatian',
@@ -41,7 +53,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Pilih semua cara berkomunikasi yang efektif di sekolah:',
     options: [
       'Berbicara dengan jelas dan sopan',
@@ -59,7 +71,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Ketika kita tidak setuju dengan pendapat teman, sebaiknya kita...',
     options: [
       'Menyampaikan pendapat dengan bahasa yang sopan',
@@ -76,7 +88,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Pasangkan sikap dengan kategori yang tepat:',
     leftOptions: [
       'Mendengarkan saat guru menjelaskan',
@@ -99,13 +111,13 @@ export const questions = [
     explanation: 'Sikap baik meliputi mendengarkan guru dan membantu teman. Sikap tidak baik meliputi mengejek teman dan berbicara saat presentasi'
   },
 
-  // Topic: Pancasila: sifat demokratis
+  // Topic: Sikap demokratis
   {
     id: 'ppkn_k2t2_006',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Pancasila sila ke-4 berbunyi...',
     options: [
       'Kerakyatan yang dipimpin oleh hikmat kebijaksanaan dalam permusyawaratan/perwakilan',
@@ -122,7 +134,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Pilih semua contoh sikap demokratis dalam kehidupan sehari-hari:',
     options: [
       'Menghargai pendapat teman',
@@ -140,7 +152,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Lambang sila ke-4 Pancasila adalah...',
     options: [
       'Kepala banteng',
@@ -157,7 +169,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Apa yang dimaksud dengan musyawarah?',
     options: [
       'Membicarakan masalah bersama untuk mencapai kesepakatan',
@@ -174,7 +186,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Pasangkan lambang Pancasila dengan silanya:',
     leftOptions: [
       'Bintang',
@@ -197,13 +209,13 @@ export const questions = [
     explanation: 'Lambang Pancasila: Bintang untuk sila ke-1, Rantai untuk sila ke-2, Pohon Beringin untuk sila ke-3, Kepala Banteng untuk sila ke-4'
   },
 
-  // Topic: Neighborhood: kehidupan bermasyarakat
+  // Topic: Kerjasama dalam Lingkungan Tetangga
   {
     id: 'ppkn_k2t2_011',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Contoh sikap gotong royong di lingkungan rumah adalah...',
     options: [
       'Kerja bakti membersihkan lingkungan',
@@ -220,7 +232,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Apa yang sebaiknya kita lakukan jika tetangga sedang sakit?',
     options: [
       'Menjenguk dan memberi bantuan',
@@ -237,7 +249,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Pilih semua kegiatan yang termasuk kegiatan sosial di masyarakat:',
     options: [
       'Kerja bakti',
@@ -255,7 +267,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Sikap yang tepat saat tetangga mengadakan hajatan adalah...',
     options: [
       'Membantu sesuai kemampuan',
@@ -272,7 +284,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Pasangkan kegiatan dengan manfaatnya dalam kehidupan bermasyarakat:',
     leftOptions: [
       'Kerja bakti',
@@ -295,13 +307,13 @@ export const questions = [
     explanation: 'Setiap kegiatan masyarakat memiliki manfaat: kerja bakti untuk kebersihan, arisan untuk silaturahmi, ronda untuk keamanan, dan posyandu untuk kesehatan'
   },
 
-  // Topic: Character building: sikap jujur dan tanggung jawab
+  // Topic: Kejujuran
   {
     id: 'ppkn_k2t2_016',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Jika kita menemukan uang di kelas, sikap yang benar adalah...',
     options: [
       'Melaporkan kepada guru',
@@ -318,7 +330,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Apa yang dimaksud dengan sikap jujur?',
     options: [
       'Mengatakan atau melakukan sesuatu sesuai kenyataan',
@@ -335,7 +347,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Pilih semua contoh sikap tanggung jawab seorang siswa:',
     options: [
       'Mengerjakan PR tepat waktu',
@@ -353,7 +365,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Mengapa sikap disiplin penting dalam kehidupan sehari-hari?',
     options: [
       'Membuat hidup lebih teratur dan tertib',
@@ -370,7 +382,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Pasangkan sikap berikut dengan kategori yang tepat:',
     leftOptions: [
       'Mengakui kesalahan',
@@ -393,13 +405,13 @@ export const questions = [
     explanation: 'Mengakui kesalahan dan mengembalikan barang temuan termasuk sikap jujur, datang tepat waktu adalah sikap disiplin, dan merapikan mainan adalah sikap tanggung jawab'
   },
 
-  // Additional questions for Life skills: komunikasi efektif
+  // Topic: Kedisiplinan
   {
     id: 'ppkn_k2t2_021',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Apa yang sebaiknya kita lakukan jika lupa nama teman yang baru kita kenal?',
     options: [
       'Jujur dan meminta maaf, lalu bertanya kembali namanya',
@@ -416,7 +428,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Apa yang harus dilakukan ketika kita ingin berbicara dalam diskusi kelompok?',
     options: [
       'Mengangkat tangan dan menunggu giliran',
@@ -433,7 +445,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Pilih sikap-sikap yang menunjukkan pendengar yang baik:',
     options: [
       'Menjaga kontak mata dengan pembicara',
@@ -452,7 +464,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Apa arti dari demokratis?',
     options: [
       'Mengutamakan kepentingan rakyat dan musyawarah',
@@ -469,7 +481,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Bagaimana cara pemilihan ketua kelas yang sesuai dengan nilai Pancasila?',
     options: [
       'Dipilih melalui musyawarah atau voting',
@@ -486,7 +498,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Pasangkan perilaku dengan sila Pancasila yang sesuai:',
     leftOptions: [
       'Berdoa sebelum belajar',
@@ -515,7 +527,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Apa manfaat dari kegiatan gotong royong di lingkungan tempat tinggal?',
     options: [
       'Pekerjaan menjadi lebih ringan dan cepat selesai',
@@ -532,7 +544,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Pilih kegiatan yang merupakan bentuk kerja sama di lingkungan sekolah:',
     options: [
       'Piket kelas bersama',
@@ -550,7 +562,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Bagaimana sikap yang tepat saat bertemu dengan tetangga baru?',
     options: [
       'Menyapa dengan ramah dan memperkenalkan diri',
@@ -568,7 +580,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Apa yang dimaksud dengan sikap tanggung jawab?',
     options: [
       'Kesediaan menanggung akibat dari perbuatan yang dilakukan',
@@ -585,7 +597,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Pilih sikap yang menunjukkan kejujuran:',
     options: [
       'Mengembalikan barang yang dipinjam',
@@ -603,7 +615,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Apa manfaat dari sikap disiplin?',
     options: [
       'Menumbuhkan kebiasaan yang baik dan tertib',
@@ -620,7 +632,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Pasangkan sikap dengan nilai karakternya:',
     leftOptions: [
       'Menyelesaikan tugas tepat waktu',
@@ -648,7 +660,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Saat berbicara dengan teman yang berbeda pendapat, sikap yang tepat adalah...',
     options: [
       'Mendengarkan dengan baik dan menghargai pendapatnya',
@@ -665,7 +677,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Apa simbol dari sila pertama Pancasila?',
     options: [
       'Bintang',
@@ -682,7 +694,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Apa yang dimaksud dengan rukun tetangga (RT)?',
     options: [
       'Lembaga kemasyarakatan yang membantu menjalankan tugas pemerintahan desa/kelurahan',
@@ -699,7 +711,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Bagaimana cara yang baik untuk menyampaikan pendapat?',
     options: [
       'Bicara dengan sopan dan tidak menyinggung perasaan orang lain',
@@ -716,7 +728,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Pilih contoh perilaku yang sesuai dengan sila kelima Pancasila:',
     options: [
       'Bersikap adil terhadap semua teman',
@@ -734,7 +746,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Mengapa kita perlu memiliki sikap toleransi?',
     options: [
       'Untuk menciptakan kerukunan dalam keberagaman',
@@ -751,7 +763,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Contoh sikap peduli lingkungan adalah...',
     options: [
       'Membuang sampah pada tempatnya',
@@ -768,7 +780,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Apa manfaat menjaga kerukunan dalam kehidupan bermasyarakat?',
     options: [
       'Hidup menjadi damai dan nyaman',
@@ -785,7 +797,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Pilih perilaku yang menunjukkan sikap disiplin di sekolah:',
     options: [
       'Datang tepat waktu',
@@ -803,7 +815,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Apa yang dimaksud dengan empati?',
     options: [
       'Kemampuan memahami dan merasakan apa yang dirasakan orang lain',
@@ -820,7 +832,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS,
+    topic: PPKN_TOPICS.KOMUNIKASI_EFEKTIF,
     question: 'Pasangkan sikap komunikasi dengan kategorinya:',
     leftOptions: [
       'Mendengarkan dengan penuh perhatian',
@@ -848,7 +860,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Apa yang harus dilakukan jika melihat tetangga sedang kesulitan?',
     options: [
       'Menawarkan bantuan',
@@ -865,7 +877,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Sila keberapa Pancasila yang memiliki simbol padi dan kapas?',
     options: [
       'Sila ke-5',
@@ -882,7 +894,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Apa yang dimaksud dengan mandiri?',
     options: [
       'Mampu melakukan sesuatu sendiri tanpa bantuan orang lain',
@@ -899,7 +911,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD,
+    topic: PPKN_TOPICS.KERJASAMA_TETANGGA,
     question: 'Pilih kegiatan yang dapat memperkuat persatuan di lingkungan tempat tinggal:',
     options: [
       'Kerja bakti membersihkan lingkungan',
@@ -917,7 +929,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.PANCASILA,
+    topic: PPKN_TOPICS.SIKAP_DEMOKRATIS,
     question: 'Bagaimana cara menerapkan nilai Pancasila dalam kehidupan sehari-hari di sekolah?',
     options: [
       'Menghormati teman yang berbeda agama, suku, dan budaya',
@@ -934,7 +946,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PPKN.id,
-    topic: SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING,
+    topic: PPKN_TOPICS.KEJUJURAN,
     question: 'Pasangkan sikap dengan manfaatnya:',
     leftOptions: [
       'Jujur',
@@ -960,10 +972,14 @@ export const questions = [
 
 // Additional metadata for learning tracking
 export const topicDistribution = {
-  [SUBJECTS.REGULAR.PPKN.topics.LIFE_SKILLS]: 15,            // 30%
-  [SUBJECTS.REGULAR.PPKN.topics.PANCASILA]: 12,              // 24% 
-  [SUBJECTS.REGULAR.PPKN.topics.NEIGHBORHOOD]: 11,           // 22%
-  [SUBJECTS.REGULAR.PPKN.topics.CHARACTER_BUILDING]: 12      // 24%
+  [PPKN_TOPICS.KOMUNIKASI_EFEKTIF]: 6,       // 12%
+  [PPKN_TOPICS.SIKAP_DEMOKRATIS]: 6,         // 12%
+  [PPKN_TOPICS.KERJASAMA_TETANGGA]: 6,       // 12%
+  [PPKN_TOPICS.KEJUJURAN]: 6,                // 12%
+  [PPKN_TOPICS.KEDISIPLINAN]: 6,             // 12%
+  [PPKN_TOPICS.GOTONG_ROYONG]: 7,            // 14%
+  [PPKN_TOPICS.LAPANG_DADA]: 6,              // 12%
+  [PPKN_TOPICS.SENANG_BEKERJA]: 7            // 14%
 };
 
 // Question type distribution

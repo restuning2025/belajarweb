@@ -1,5 +1,19 @@
 import { QUESTION_TYPES, DIFFICULTY_LEVELS, SUBJECTS } from '../questionSchema';
 
+// Define topic constants for PJOK (Pendidikan Jasmani, Olahraga, dan Kesehatan)
+const PJOK_TOPICS = {
+  GERAK_LOKOMOTOR: 'Gerak lokomotor',
+  AKTIVITAS_JASMANI: 'Aktivitas jasmani',
+  KETANGKASAN: 'Latihan ketangkasan',
+  KELENTURAN: 'Latihan kelenturan',
+  KESEIMBANGAN: 'Latihan keseimbangan',
+  GIZI_SEIMBANG: 'Gizi seimbang',
+  POLA_MAKAN: 'Pola makan sehat',
+  PERMAINAN_TRADISIONAL: 'Permainan tradisional',
+  KEAMANAN_OLAHRAGA: 'Keamanan berolahraga',
+  AKTIVITAS_AIR: 'Aktivitas air'
+};
+
 export const questions = [
   // Topic: Latihan ketangkasan
   {
@@ -7,7 +21,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.AGILITY,
+    topic: PJOK_TOPICS.KETANGKASAN,
     question: 'Teknik menendang bola yang memberikan kontrol paling baik adalah...',
     options: [
       'Menggunakan kaki bagian dalam',
@@ -24,7 +38,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.AGILITY,
+    topic: PJOK_TOPICS.KETANGKASAN,
     question: 'Gerakan melompat termasuk dalam latihan...',
     options: [
       'Ketangkasan',
@@ -41,7 +55,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.AGILITY,
+    topic: PJOK_TOPICS.KETANGKASAN,
     question: 'Pilih gerakan yang termasuk latihan ketangkasan:',
     options: [
       'Melompat',
@@ -59,7 +73,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.AGILITY,
+    topic: PJOK_TOPICS.KETANGKASAN,
     question: 'Apa manfaat latihan ketangkasan?',
     options: [
       'Meningkatkan koordinasi tubuh',
@@ -76,7 +90,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.AGILITY,
+    topic: PJOK_TOPICS.KETANGKASAN,
     question: 'Pasangkan gerakan dengan jenis latihannya:',
     leftOptions: [
       'Lari zig-zag',
@@ -105,7 +119,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Apa tujuan dari latihan kelenturan?',
     options: [
       'Meningkatkan rentang gerak sendi',
@@ -122,7 +136,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Contoh latihan keseimbangan adalah...',
     options: [
       'Berdiri dengan satu kaki',
@@ -139,7 +153,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Pilih gerakan yang termasuk latihan kelenturan:',
     options: [
       'Membungkuk dan menyentuh jari kaki',
@@ -157,7 +171,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Latihan keseimbangan yang baik dilakukan dengan...',
     options: [
       'Gerakan lambat dan terkontrol',
@@ -174,7 +188,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Pasangkan gerakan dengan manfaatnya:',
     leftOptions: [
       'Memutar badan ke kanan dan kiri',
@@ -203,7 +217,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Makanan yang mengandung karbohidrat adalah...',
     options: [
       'Nasi',
@@ -220,7 +234,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Makanan yang baik untuk pertumbuhan tulang adalah...',
     options: [
       'Susu',
@@ -237,7 +251,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Pilih makanan yang termasuk sumber protein:',
     options: [
       'Telur',
@@ -255,7 +269,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Berapa gelas air yang sebaiknya diminum setiap hari?',
     options: [
       '8 gelas',
@@ -272,7 +286,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Pasangkan makanan dengan kandungan gizinya:',
     leftOptions: [
       'Wortel',
@@ -300,7 +314,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.AGILITY,
+    topic: PJOK_TOPICS.KETANGKASAN,
     question: 'Aktivitas berikut yang melatih ketangkasan adalah...',
     options: [
       'Bermain lompat tali',
@@ -317,7 +331,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.AGILITY,
+    topic: PJOK_TOPICS.KETANGKASAN,
     question: 'Latihan ketangkasan yang bisa dilakukan di dalam ruangan adalah...',
     options: [
       'Melompat dengan satu kaki',
@@ -334,7 +348,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.AGILITY,
+    topic: PJOK_TOPICS.KETANGKASAN,
     question: 'Pilih permainan yang melatih ketangkasan:',
     options: [
       'Gobak sodor',
@@ -352,7 +366,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Kapan waktu terbaik untuk melakukan peregangan?',
     options: [
       'Sebelum dan sesudah berolahraga',
@@ -369,7 +383,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Mengapa kelenturan penting untuk anak-anak?',
     options: [
       'Membantu perkembangan fisik dan mencegah cedera',
@@ -386,7 +400,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Pilih gerakan yang melatih keseimbangan:',
     options: [
       'Berjalan di atas garis lurus',
@@ -404,7 +418,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Bagian tubuh yang dilatih saat menyentuh jari kaki dari posisi berdiri adalah...',
     options: [
       'Punggung dan hamstring',
@@ -421,7 +435,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY,
+    topic: PJOK_TOPICS.KELENTURAN,
     question: 'Pasangkan gerakan dengan bagian tubuh yang dilatih:',
     leftOptions: [
       'Menoleh ke kanan dan kiri',
@@ -449,7 +463,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Buah berikut yang tinggi vitamin C adalah...',
     options: [
       'Jeruk',
@@ -466,7 +480,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Makanan yang sebaiknya TIDAK dikonsumsi sebelum berolahraga adalah...',
     options: [
       'Makanan berminyak',
@@ -483,7 +497,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Pilih kebiasaan makan yang sehat:',
     options: [
       'Sarapan setiap pagi',
@@ -501,7 +515,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Sarapan sebaiknya dilakukan pada jam...',
     options: [
       '6-8 pagi',
@@ -518,7 +532,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Apa akibat dari kekurangan vitamin A?',
     options: [
       'Gangguan penglihatan',
@@ -535,7 +549,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.NUTRITION,
+    topic: PJOK_TOPICS.POLA_MAKAN,
     question: 'Pasangkan jenis makanan dengan kandungan nutrisi utamanya:',
     leftOptions: [
       'Ikan',
@@ -563,7 +577,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.PJOK.id,
-    topic: SUBJECTS.REGULAR.PJOK.topics.AGILITY,
+    topic: PJOK_TOPICS.KETANGKASAN,
     question: 'Latihan melompati cone secara bergantian bermanfaat untuk melatih...',
     options: [
       'Ketangkasan dan kecepatan',
@@ -578,9 +592,16 @@ export const questions = [
 
 // Additional metadata for learning tracking
 export const topicDistribution = {
-  [SUBJECTS.REGULAR.PJOK.topics.AGILITY]: 10,      // ~33%
-  [SUBJECTS.REGULAR.PJOK.topics.FLEXIBILITY]: 10,  // ~33% 
-  [SUBJECTS.REGULAR.PJOK.topics.NUTRITION]: 10     // ~33%
+  [PJOK_TOPICS.KETANGKASAN]: 10,         // ~33%
+  [PJOK_TOPICS.KELENTURAN]: 10,          // ~33% 
+  [PJOK_TOPICS.POLA_MAKAN]: 10,          // ~33%
+  [PJOK_TOPICS.GERAK_LOKOMOTOR]: 0,      // 0%
+  [PJOK_TOPICS.AKTIVITAS_JASMANI]: 0,    // 0%
+  [PJOK_TOPICS.KESEIMBANGAN]: 0,         // 0%
+  [PJOK_TOPICS.GIZI_SEIMBANG]: 0,        // 0%
+  [PJOK_TOPICS.PERMAINAN_TRADISIONAL]: 0, // 0%
+  [PJOK_TOPICS.KEAMANAN_OLAHRAGA]: 0,    // 0%
+  [PJOK_TOPICS.AKTIVITAS_AIR]: 0         // 0%
 };
 
 // Question type distribution

@@ -1,13 +1,26 @@
 import { QUESTION_TYPES, DIFFICULTY_LEVELS, SUBJECTS } from '../questionSchema';
 
+// Updated topics for Sains K2T2
+export const SAINS_TOPICS = {
+  BATUAN_DAN_TANAH: 'Batuan dan tanah',
+  CUACA_DAN_MUSIM: 'Cuaca dan musim',
+  BANJIR: 'Banjir',
+  SIKLUS_AIR: 'Siklus air',
+  PENJERNIHAN_AIR: 'Penjernihan air',
+  GEJALA_ALAM: 'Gejala alam',
+  PERUBAHAN_MUSIM: 'Perubahan musim',
+  BENCANA_ALAM: 'Bencana alam',
+  MITIGASI_BENCANA: 'Mitigasi bencana'
+};
+
 export const questions = [
-  // Topic: Planet Bumi: jenis batuan dan tanah
+  // Topic: Batuan dan tanah
   {
     id: 'sains_k2t2_001',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Batuan yang terbentuk dari magma yang mendingin di dalam kerak bumi disebut...',
     options: [
       'Batuan beku (granit)',
@@ -24,7 +37,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Batuan yang terbentuk dari tumpukan material seperti pasir, tanah, dan kerikil yang terendap selama jutaan tahun disebut...',
     options: [
       'Batuan sedimen',
@@ -41,7 +54,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Pilih semua pernyataan yang benar tentang tanah humus:',
     options: [
       'Berwarna hitam atau cokelat gelap',
@@ -59,7 +72,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Jenis tanah apakah yang cocok untuk membuat kerajinan gerabah?',
     options: [
       'Tanah liat',
@@ -76,7 +89,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Pasangkan jenis batuan dengan contohnya:',
     leftOptions: [
       'Batuan beku',
@@ -99,13 +112,13 @@ export const questions = [
     explanation: 'Granit adalah contoh batuan beku, batu kapur adalah batuan sedimen, marmer adalah batuan metamorf, dan obsidian adalah batuan vulkanik'
   },
 
-  // Topic: Musim: Iklim 2 musim & 4 musim
+  // Topic: Cuaca dan musim
   {
     id: 'sains_k2t2_006',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Indonesia memiliki berapa musim?',
     options: [
       '2 musim',
@@ -122,7 +135,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Negara yang memiliki 4 musim memiliki musim-musim berikut, KECUALI:',
     options: [
       'Musim hujan',
@@ -139,7 +152,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Pilih ciri-ciri musim dingin:',
     options: [
       'Suhu sangat rendah',
@@ -157,7 +170,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Mengapa Indonesia hanya memiliki 2 musim?',
     options: [
       'Karena Indonesia terletak di sekitar garis khatulistiwa',
@@ -174,7 +187,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Pasangkan musim dengan ciri-cirinya:',
     leftOptions: [
       'Musim semi',
@@ -197,13 +210,13 @@ export const questions = [
     explanation: 'Musim semi ditandai dengan bunga bermekaran, musim panas dengan suhu tinggi, musim gugur dengan daun berubah warna dan gugur, dan musim dingin dengan turunnya salju'
   },
 
-  // Topic: Musim: Simbol Cuaca
+  // Topic: Cuaca dan musim - Simbol Cuaca
   {
     id: 'sains_k2t2_011',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Simbol apa yang menunjukkan cuaca hujan?',
     options: [
       'Gambar awan dengan tetesan air',
@@ -220,7 +233,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Pilih simbol cuaca yang biasanya digunakan dalam prakiraan cuaca:',
     options: [
       'Matahari',
@@ -238,7 +251,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Apa yang dimaksud dengan simbol awan dengan matahari mengintip?',
     options: [
       'Cuaca cerah berawan',
@@ -256,7 +269,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Apa yang menyebabkan perubahan cuaca?',
     options: [
       'Perubahan suhu, tekanan udara, dan kelembaban',
@@ -273,7 +286,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Pilih tanda-tanda cuaca akan hujan:',
     options: [
       'Langit berawan tebal',
@@ -292,7 +305,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Apa yang dimaksud dengan garis khatulistiwa?',
     options: [
       'Garis imajiner yang membagi bumi menjadi belahan utara dan selatan',
@@ -309,7 +322,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Negara-negara di sekitar garis khatulistiwa umumnya memiliki:',
     options: [
       'Iklim tropis dengan suhu hangat sepanjang tahun',
@@ -327,7 +340,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Apa penyebab utama terjadinya banjir?',
     options: [
       'Hujan lebat dan sistem drainase yang buruk',
@@ -344,7 +357,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Pilih cara-cara mencegah banjir:',
     options: [
       'Tidak membuang sampah di sungai',
@@ -362,7 +375,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Apa yang dimaksud dengan kekeringan?',
     options: [
       'Kondisi kekurangan air dalam jangka waktu lama',
@@ -374,13 +387,13 @@ export const questions = [
     explanation: 'Kekeringan adalah kondisi dimana suatu daerah mengalami kekurangan air dalam jangka waktu yang lama, biasanya terjadi pada musim kemarau'
   },
 
-  // Additional Earth/Planet Questions
+  // Topic: Batuan dan tanah - Lanjutan
   {
     id: 'sains_k2t2_021',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Batuan yang berubah bentuk karena panas dan tekanan tinggi disebut:',
     options: [
       'Batuan metamorf',
@@ -397,7 +410,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Pilih semua contoh batuan beku:',
     options: [
       'Granit',
@@ -415,7 +428,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Jenis tanah yang paling baik untuk pertanian adalah:',
     options: [
       'Tanah humus',
@@ -432,7 +445,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Pasangkan jenis tanah dengan karakteristiknya:',
     leftOptions: [
       'Tanah humus',
@@ -460,7 +473,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Lapisan bumi yang kita tinggali adalah:',
     options: [
       'Kerak bumi',
@@ -478,7 +491,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Kapan biasanya musim kemarau terjadi di Indonesia?',
     options: [
       'April hingga September',
@@ -495,7 +508,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Pilih ciri-ciri musim kemarau di Indonesia:',
     options: [
       'Curah hujan rendah',
@@ -513,7 +526,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Apa akibat dari musim kemarau yang berkepanjangan?',
     options: [
       'Kekeringan',
@@ -530,7 +543,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Pasangkan aktivitas dengan musim yang paling tepat:',
     leftOptions: [
       'Menanam padi',
@@ -558,7 +571,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Apa yang menyebabkan terjadinya perubahan musim di negara dengan empat musim?',
     options: [
       'Kemiringan sumbu bumi dan rotasi bumi mengelilingi matahari',
@@ -576,7 +589,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Manakah yang bukan termasuk bencana alam?',
     options: [
       'Kebakaran gedung',
@@ -593,7 +606,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Pilih bencana alam yang sering terjadi di Indonesia:',
     options: [
       'Gempa bumi',
@@ -611,7 +624,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Apa yang harus dilakukan saat terjadi gempa bumi?',
     options: [
       'Berlindung di bawah meja yang kokoh',
@@ -628,7 +641,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Pasangkan bencana alam dengan penyebabnya:',
     leftOptions: [
       'Banjir',
@@ -656,7 +669,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Tanda bahaya tsunami setelah gempa bumi adalah:',
     options: [
       'Air laut tiba-tiba surut jauh ke tengah laut',
@@ -674,7 +687,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Bumi terbagi menjadi berapa lapisan utama?',
     options: [
       '3 lapisan',
@@ -691,7 +704,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Pilih pernyataan yang benar tentang batuan vulkanik:',
     options: [
       'Terbentuk dari magma atau lava yang mendingin',
@@ -709,7 +722,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Manakah yang BUKAN merupakan manfaat tanah liat?',
     options: [
       'Sebagai bahan bakar',
@@ -726,7 +739,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Manakah yang merupakan tanda-tanda awal musim hujan di Indonesia?',
     options: [
       'Mulai turun hujan secara teratur',
@@ -743,7 +756,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Pilih kegiatan yang biasa dilakukan saat musim hujan:',
     options: [
       'Membawa payung',
@@ -761,7 +774,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Apa nama alat untuk mengukur curah hujan?',
     options: [
       'Rain gauge (Penakar hujan)',
@@ -778,7 +791,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Pasangkan bencana alam dengan tindakan penanggulangannya:',
     leftOptions: [
       'Banjir',
@@ -806,7 +819,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Apa yang dimaksud dengan mitigasi bencana?',
     options: [
       'Upaya untuk mengurangi dampak bencana',
@@ -823,7 +836,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Perbedaan utama antara batuan beku dan batuan sedimen adalah:',
     options: [
       'Cara terbentuknya',
@@ -840,7 +853,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Pilih yang termasuk dalam siklus batuan:',
     options: [
       'Pelapukan dan erosi',
@@ -858,7 +871,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.SEASONS,
+    topic: SAINS_TOPICS.CUACA_DAN_MUSIM,
     question: 'Manakah dari berikut ini yang BUKAN merupakan alat untuk memantau cuaca?',
     options: [
       'Mikroskop',
@@ -875,7 +888,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Apa yang dimaksud dengan gunung berapi?',
     options: [
       'Tempat keluarnya magma ke permukaan bumi',
@@ -892,7 +905,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Pilih materi yang dikeluarkan gunung berapi saat meletus:',
     options: [
       'Lava',
@@ -910,7 +923,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS,
+    topic: SAINS_TOPICS.BENCANA_ALAM,
     question: 'Apa yang menyebabkan tanah longsor?',
     options: [
       'Kombinasi dari hujan lebat, lereng curam, dan deforestasi',
@@ -927,7 +940,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SCIENCE.id,
-    topic: SUBJECTS.REGULAR.SCIENCE.topics.EARTH,
+    topic: SAINS_TOPICS.BATUAN_DAN_TANAH,
     question: 'Pasangkan alat dengan fungsinya:',
     leftOptions: [
       'Termometer',
@@ -953,9 +966,15 @@ export const questions = [
 
 // Additional metadata for learning tracking
 export const topicDistribution = {
-  [SUBJECTS.REGULAR.SCIENCE.topics.EARTH]: 15,            // 30%
-  [SUBJECTS.REGULAR.SCIENCE.topics.SEASONS]: 20,          // 40%
-  [SUBJECTS.REGULAR.SCIENCE.topics.NATURAL_DISASTERS]: 15 // 30%
+  [SAINS_TOPICS.BATUAN_DAN_TANAH]: 8,     // 16%
+  [SAINS_TOPICS.CUACA_DAN_MUSIM]: 8,      // 16%
+  [SAINS_TOPICS.BANJIR]: 5,               // 10%
+  [SAINS_TOPICS.SIKLUS_AIR]: 5,           // 10%
+  [SAINS_TOPICS.PENJERNIHAN_AIR]: 5,      // 10%
+  [SAINS_TOPICS.GEJALA_ALAM]: 5,          // 10%
+  [SAINS_TOPICS.PERUBAHAN_MUSIM]: 4,      // 8%
+  [SAINS_TOPICS.BENCANA_ALAM]: 5,         // 10%
+  [SAINS_TOPICS.MITIGASI_BENCANA]: 5      // 10%
 };
 
 // Question type distribution

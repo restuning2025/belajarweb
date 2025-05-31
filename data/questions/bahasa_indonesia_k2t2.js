@@ -1,13 +1,29 @@
 import { QUESTION_TYPES, DIFFICULTY_LEVELS, SUBJECTS } from '../questionSchema';
 
+// Updated topics for Bahasa Indonesia K2T2
+export const INDO_TOPICS = {
+  KALIMAT_PETUNJUK: 'Kalimat petunjuk',
+  KETERANGAN_WAKTU: 'Keterangan waktu',
+  KALIMAT_SPOK: 'Kalimat SPOK',
+  KALIMAT_PASIF: 'Kalimat pasif',
+  FABEL: 'Fabel',
+  PERIBAHASA: 'Peribahasa',
+  KETERANGAN_TEMPAT_ALAT: 'Keterangan tempat & alat',
+  KALIMAT_AKTIF_PASIF: 'Kalimat aktif & pasif',
+  PANTUN: 'Pantun',
+  FABEL_PESAN_MORAL: 'Fabel (pesan moral)',
+  KALIMAT_AKTIF_PASIF_TABEL: 'Kalimat aktif/pasif (tabel)',
+  PANTUN_STRUKTUR: 'Pantun (struktur)'
+};
+
 export const questions = [
-  // Topic: Aktivitas keluarga: kalimat petunjuk
+  // Topic: Kalimat petunjuk
   {
     id: 'indo_k2t2_001',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Manakah yang merupakan kalimat petunjuk yang benar untuk mencuci tangan?',
     options: [
       'Basahi tangan, gunakan sabun, gosok selama 20 detik, bilas, dan keringkan',
@@ -24,7 +40,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Manakah yang merupakan kalimat petunjuk untuk menggosok gigi?',
     options: [
       'Basahi sikat gigi, beri pasta gigi, gosok gigi dengan gerakan naik turun, kumur, dan bilas',
@@ -36,13 +52,13 @@ export const questions = [
     explanation: 'Kalimat petunjuk berisi langkah-langkah yang jelas dan berurutan untuk melakukan sesuatu'
   },
 
-  // Topic: Aktivitas keluarga: SPOK
+  // Topic: Kalimat SPOK
   {
     id: 'indo_k2t2_003',
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pilih semua kalimat yang memiliki struktur SPOK yang lengkap:',
     options: [
       'Ibu memasak nasi goreng di dapur',
@@ -60,7 +76,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pada kalimat "Ibu membersihkan lantai", bagian manakah yang merupakan objek?',
     options: [
       'Lantai',
@@ -77,7 +93,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pasangkan bagian kalimat "Ibu mencuci baju di sungai" dengan fungsinya dalam struktur SPOK:',
     leftOptions: [
       'Ibu',
@@ -100,13 +116,13 @@ export const questions = [
     explanation: 'Dalam struktur SPOK: "Ibu" adalah Subjek, "mencuci" adalah Predikat, "baju" adalah Objek, dan "di sungai" adalah Keterangan.'
   },
 
-  // Topic: Aktivitas keluarga: kalimat aktif-pasif
+  // Topic: Kalimat aktif & pasif
   {
     id: 'indo_k2t2_006',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Manakah yang merupakan kalimat aktif?',
     options: [
       'Adik membaca buku cerita',
@@ -123,7 +139,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Kalimat "Bola ditendang oleh kakak" bila diubah menjadi kalimat aktif adalah...',
     options: [
       'Kakak menendang bola',
@@ -140,7 +156,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pilih kalimat-kalimat yang termasuk kalimat pasif:',
     options: [
       'Buku itu ditulis oleh paman',
@@ -153,13 +169,13 @@ export const questions = [
     explanation: 'Kalimat pasif ditandai dengan penggunaan awalan di- pada kata kerja. "Buku itu ditulis oleh paman", "Surat itu dikirim kemarin", dan "Jalan itu diperbaiki para pekerja" adalah kalimat pasif.'
   },
 
-  // Topic: Lingkungan sekitar: cerita rakyat/fabel
+  // Topic: Fabel
   {
     id: 'indo_k2t2_009',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Apa yang dimaksud dengan fabel?',
     options: [
       'Cerita dengan tokoh binatang yang berperilaku seperti manusia',
@@ -176,7 +192,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Cerita "Kancil dan Buaya" adalah contoh dari...',
     options: [
       'Fabel',
@@ -193,7 +209,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pasangkan cerita dengan jenisnya:',
     leftOptions: [
       'Kancil dan Buaya',
@@ -221,7 +237,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pesan moral dari cerita "Kancil dan Buaya" adalah...',
     options: [
       'Kecerdikan dapat mengalahkan kekuatan',
@@ -233,13 +249,13 @@ export const questions = [
     explanation: 'Dalam cerita "Kancil dan Buaya", meskipun kancil memiliki tubuh kecil dan lemah, ia dapat mengalahkan buaya yang lebih besar dan kuat dengan menggunakan kecerdikannya.'
   },
 
-  // Topic: Lingkungan sekitar: peribahasa
+  // Topic: Peribahasa
   {
     id: 'indo_k2t2_013',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Apa arti peribahasa "Air beriak tanda tak dalam"?',
     options: [
       'Orang yang banyak bicara biasanya sedikit ilmunya',
@@ -256,7 +272,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pilih peribahasa yang bermakna pentingnya kerja sama:',
     options: [
       'Berat sama dipikul, ringan sama dijinjing',
@@ -269,13 +285,13 @@ export const questions = [
     explanation: '"Berat sama dipikul, ringan sama dijinjing" dan "Bulat air karena pembuluh, bulat kata karena mufakat" adalah peribahasa yang bermakna pentingnya kerja sama dan musyawarah dalam menyelesaikan masalah.'
   },
 
-  // Topic: Lingkungan sekitar: pantun dan puisi
+  // Topic: Pantun
   {
     id: 'indo_k2t2_015',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Manakah ciri-ciri pantun berikut ini?',
     options: [
       'Terdiri dari 4 baris, baris 1-2 sampiran dan baris 3-4 isi',
@@ -292,7 +308,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Perhatikan pantun berikut:\nBerbuah mangga berbuah manggis\nDipetik Ani dipetik Siti\nRajin belajar janganlah menangis\nKelak berguna untuk nanti\n\nManakah yang merupakan isi dari pantun tersebut?',
     options: [
       'Rajin belajar janganlah menangis, Kelak berguna untuk nanti',
@@ -309,7 +325,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pasangkan bagian pantun dengan namanya:',
     leftOptions: [
       'Pergi ke pasar membeli mangga',
@@ -337,7 +353,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Apa perbedaan utama antara pantun dan puisi?',
     options: [
       'Pantun memiliki aturan baku tentang jumlah baris dan rima, sedangkan puisi lebih bebas',
@@ -349,13 +365,13 @@ export const questions = [
     explanation: 'Pantun memiliki aturan baku yaitu terdiri dari 4 baris dengan pola rima a-b-a-b serta memiliki sampiran dan isi, sedangkan puisi lebih bebas dalam hal jumlah baris dan pola rima.'
   },
 
-  // Tambahan aktivitas keluarga: kalimat petunjuk
+  // Topic: Keterangan waktu
   {
     id: 'indo_k2t2_019',
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Manakah yang merupakan kalimat petunjuk yang benar untuk membuat teh?',
     options: [
       'Masukkan teh celup ke dalam gelas, tuangkan air panas, tunggu 2 menit, aduk, dan tambahkan gula jika suka',
@@ -372,7 +388,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pilih semua kalimat yang merupakan kalimat petunjuk:',
     options: [
       'Cuci tangan dengan sabun dan air mengalir',
@@ -390,7 +406,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Manakah kalimat yang menggunakan kata kerja perintah?',
     options: [
       'Rapikan tempat tidurmu!',
@@ -408,7 +424,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pada kalimat "Adik bermain bola di halaman", bagian manakah yang merupakan predikat?',
     options: [
       'Bermain',
@@ -425,7 +441,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pilih semua kalimat yang memiliki subjek di awal kalimat:',
     options: [
       'Ibu memasak nasi goreng',
@@ -443,7 +459,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pasangkan bagian kalimat "Kakak membantu ayah di kebun" dengan fungsinya dalam struktur SPOK:',
     leftOptions: [
       'Kakak',
@@ -472,7 +488,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Manakah bentuk pasif dari kalimat "Ibu memasak nasi goreng"?',
     options: [
       'Nasi goreng dimasak oleh ibu',
@@ -489,7 +505,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pilih semua kalimat pasif:',
     options: [
       'Buku dibaca oleh adik',
@@ -507,7 +523,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Manakah kalimat yang memiliki kata kerja berawalan me- yang menunjukkan kalimat aktif?',
     options: [
       'Adik menyapu lantai',
@@ -525,7 +541,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Manakah yang merupakan ciri-ciri fabel?',
     options: [
       'Tokohnya adalah binatang yang berperilaku seperti manusia',
@@ -542,7 +558,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pilih semua cerita yang termasuk fabel:',
     options: [
       'Kancil dan Buaya',
@@ -560,7 +576,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Apa pesan moral utama dalam cerita "Kura-kura dan Kelinci"?',
     options: [
       'Lambat tapi tekun akan mengalahkan yang cepat tapi sombong',
@@ -578,7 +594,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Apa makna dari peribahasa "Bagai air di daun talas"?',
     options: [
       'Tidak tetap pendirian, mudah terpengaruh',
@@ -595,7 +611,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pilih semua peribahasa yang berkaitan dengan alam:',
     options: [
       'Air beriak tanda tak dalam',
@@ -613,7 +629,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Peribahasa "Tong kosong nyaring bunyinya" biasanya digunakan untuk menggambarkan orang yang:',
     options: [
       'Banyak bicara tetapi sedikit ilmu',
@@ -631,7 +647,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Baris manakah yang biasanya digunakan sebagai sampiran dalam pantun?',
     options: [
       'Dua baris pertama',
@@ -648,7 +664,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pasangkan jenis pantun dengan maknanya:',
     leftOptions: [
       'Pantun nasihat',
@@ -676,7 +692,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Perhatikan pantun berikut: "Burung merpati terbang tinggi / Hinggap sebentar di pohon cemara / Hati-hati dalam membagi / Supaya semua sama rata" Pantun ini termasuk jenis apa?',
     options: [
       'Pantun nasihat',
@@ -694,7 +710,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Apa yang dimaksud dengan puisi?',
     options: [
       'Karangan yang menggunakan bahasa indah dan mengandung makna tertentu',
@@ -711,7 +727,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pilih semua yang termasuk unsur puisi:',
     options: [
       'Rima (sajak)',
@@ -729,7 +745,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Manakah contoh majas personifikasi?',
     options: [
       'Angin berbisik di telingaku',
@@ -747,7 +763,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Manakah yang merupakan contoh kegiatan gotong royong dalam keluarga?',
     options: [
       'Semua anggota keluarga membersihkan rumah bersama-sama',
@@ -764,7 +780,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pilih semua kegiatan yang termasuk aktivitas keluarga yang positif:',
     options: [
       'Makan malam bersama',
@@ -782,7 +798,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Apa manfaat makan bersama keluarga?',
     options: [
       'Memperkuat hubungan antar anggota keluarga',
@@ -799,7 +815,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Pasangkan aktivitas dengan nilai yang diajarkan dalam keluarga:',
     leftOptions: [
       'Membersihkan rumah bersama',
@@ -828,7 +844,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Apa pentingnya menjaga kebersihan lingkungan?',
     options: [
       'Mencegah penyakit dan membuat lingkungan nyaman',
@@ -845,7 +861,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pilih semua tindakan yang dapat membantu menjaga lingkungan:',
     options: [
       'Membuang sampah pada tempatnya',
@@ -863,7 +879,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Manakah kalimat yang subjek dan predikatnya tepat?',
     options: [
       'Adik saya sedang membaca buku cerita',
@@ -880,7 +896,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Apa pesan moral dari cerita "Semut dan Belalang"?',
     options: [
       'Pentingnya bekerja keras dan bersiap untuk masa depan',
@@ -897,7 +913,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT,
+    topic: INDO_TOPICS.FABEL,
     question: 'Pasangkan peribahasa dengan contoh situasi yang tepat:',
     leftOptions: [
       'Air beriak tanda tak dalam',
@@ -925,7 +941,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Kalimat mana yang menggunakan tanda baca yang benar?',
     options: [
       'Ibu berkata, "Tolong belikan sayur di pasar."',
@@ -942,7 +958,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.INDO.id,
-    topic: SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES,
+    topic: INDO_TOPICS.KALIMAT_PETUNJUK,
     question: 'Perhatikan kalimat berikut: "Adik menangis karena terjatuh dari sepeda". Bagian yang merupakan keterangan sebab adalah:',
     options: [
       'karena terjatuh dari sepeda',
@@ -957,8 +973,18 @@ export const questions = [
 
 // Additional metadata for learning tracking
 export const topicDistribution = {
-  [SUBJECTS.REGULAR.INDO.topics.FAMILY_ACTIVITIES]: 25, // 50%
-  [SUBJECTS.REGULAR.INDO.topics.ENVIRONMENT]: 25       // 50%
+  [INDO_TOPICS.KALIMAT_PETUNJUK]: 4,               // ~8%
+  [INDO_TOPICS.KETERANGAN_WAKTU]: 4,               // ~8%
+  [INDO_TOPICS.KALIMAT_SPOK]: 4,                   // ~8%
+  [INDO_TOPICS.KALIMAT_PASIF]: 4,                  // ~8%
+  [INDO_TOPICS.FABEL]: 4,                          // ~8%
+  [INDO_TOPICS.PERIBAHASA]: 4,                     // ~8%
+  [INDO_TOPICS.KETERANGAN_TEMPAT_ALAT]: 4,         // ~8%
+  [INDO_TOPICS.KALIMAT_AKTIF_PASIF]: 4,            // ~8%
+  [INDO_TOPICS.PANTUN]: 4,                         // ~8%
+  [INDO_TOPICS.FABEL_PESAN_MORAL]: 4,              // ~8%
+  [INDO_TOPICS.KALIMAT_AKTIF_PASIF_TABEL]: 5,      // ~10%
+  [INDO_TOPICS.PANTUN_STRUKTUR]: 5                 // ~10%
 };
 
 export const questionTypeDistribution = {

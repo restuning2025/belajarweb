@@ -1,5 +1,17 @@
 import { QUESTION_TYPES, DIFFICULTY_LEVELS, SUBJECTS } from '../questionSchema';
 
+// Define topic constants for SBDP (Seni Budaya dan Prakarya)
+const SBDP_TOPICS = {
+  ANYAMAN: 'Anyaman dan prakarya dari bahan alam',
+  SENI_TIGA_DIMENSI: 'Karya seni tiga dimensi',
+  TEKNIK_LIPAT: 'Teknik melipat dan menempelkan kertas',
+  BAHAN_ALAM: 'Bahan alam untuk prakarya',
+  SENI_RUPA: 'Seni rupa dan kerajinan tangan',
+  SENI_MUSIK: 'Seni musik tradisional',
+  SENI_TARI: 'Seni tari tradisional',
+  SENI_TEATER: 'Seni teater dan drama'
+};
+
 export const questions = [
   // Topic: Anyaman dan prakarya dari bahan alam
   {
@@ -7,7 +19,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.MATERIALS,
+    topic: SBDP_TOPICS.BAHAN_ALAM,
     question: 'Manakah yang termasuk bahan alam untuk membuat karya seni?',
     options: [
       'Kayu',
@@ -24,7 +36,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.WEAVING,
+    topic: SBDP_TOPICS.ANYAMAN,
     question: 'Hasil anyaman tradisional di Indonesia biasa digunakan untuk...',
     options: [
       'Tikar',
@@ -41,7 +53,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.WEAVING,
+    topic: SBDP_TOPICS.ANYAMAN,
     question: 'Pilih bahan alam yang dapat digunakan untuk membuat prakarya:',
     options: [
       'Biji-bijian',
@@ -59,7 +71,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.WEAVING,
+    topic: SBDP_TOPICS.ANYAMAN,
     question: 'Teknik yang digunakan dalam menganyam biasanya adalah...',
     options: [
       'Selang-seling',
@@ -76,7 +88,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.WEAVING,
+    topic: SBDP_TOPICS.ANYAMAN,
     question: 'Pasangkan bahan dengan hasil kerajinan:',
     leftOptions: [
       'Daun pandan',
@@ -105,7 +117,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Contoh karya seni tiga dimensi adalah...',
     options: [
       'Patung',
@@ -122,7 +134,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Karya seni tiga dimensi dapat dilihat dari...',
     options: [
       'Berbagai arah',
@@ -139,7 +151,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Pilih yang termasuk karya seni tiga dimensi:',
     options: [
       'Patung',
@@ -157,7 +169,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Bahan yang biasa digunakan untuk membuat patung adalah...',
     options: [
       'Tanah liat',
@@ -174,7 +186,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Pasangkan jenis karya seni dengan dimensinya:',
     leftOptions: [
       'Patung',
@@ -203,7 +215,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Seni melipat kertas dari Jepang disebut...',
     options: [
       'Origami',
@@ -220,7 +232,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Untuk membuat kolase, kita membutuhkan...',
     options: [
       'Lem',
@@ -237,7 +249,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Pilih bahan yang bisa digunakan untuk membuat kolase:',
     options: [
       'Potongan kertas',
@@ -255,7 +267,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Jenis kertas yang paling baik untuk origami adalah...',
     options: [
       'Kertas origami khusus',
@@ -272,7 +284,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Pasangkan teknik dengan hasilnya:',
     leftOptions: [
       'Origami',
@@ -300,7 +312,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.WEAVING,
+    topic: SBDP_TOPICS.ANYAMAN,
     question: 'Alat yang digunakan untuk memotong ketika membuat anyaman adalah...',
     options: [
       'Gunting',
@@ -317,7 +329,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.WEAVING,
+    topic: SBDP_TOPICS.ANYAMAN,
     question: 'Ketika menganyam, sebaiknya bahan alam seperti daun pandan...',
     options: [
       'Direndam terlebih dahulu agar lebih lentur',
@@ -334,7 +346,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.WEAVING,
+    topic: SBDP_TOPICS.ANYAMAN,
     question: 'Pilih jenis anyaman yang ada di Indonesia:',
     options: [
       'Anyaman Gedek',
@@ -352,7 +364,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Bahan yang TIDAK cocok untuk membuat karya seni tiga dimensi adalah...',
     options: [
       'Kertas tipis',
@@ -369,7 +381,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Perbedaan utama antara seni dua dimensi dan tiga dimensi adalah...',
     options: [
       'Seni tiga dimensi memiliki volume, seni dua dimensi hanya panjang dan lebar',
@@ -386,7 +398,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Pilih bahan yang dapat digunakan untuk membuat patung:',
     options: [
       'Tanah liat',
@@ -404,7 +416,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Apa yang dimaksud dengan relief?',
     options: [
       'Karya seni tiga dimensi yang menempel pada bidang datar',
@@ -421,7 +433,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.THREE_D,
+    topic: SBDP_TOPICS.SENI_TIGA_DIMENSI,
     question: 'Pasangkan jenis karya dengan sifatnya:',
     leftOptions: [
       'Patung',
@@ -449,7 +461,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Hasil karya origami yang populer adalah bentuk...',
     options: [
       'Burung bangau',
@@ -466,7 +478,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Perbedaan antara origami dan kirigami adalah...',
     options: [
       'Kirigami menggunakan gunting/pemotong, origami hanya lipatan',
@@ -483,7 +495,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC1,
     difficulty: DIFFICULTY_LEVELS.MEDIUM,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Pilih bentuk yang biasa dibuat dengan teknik origami:',
     options: [
       'Burung',
@@ -501,7 +513,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Apa yang dimaksud dengan kolase?',
     options: [
       'Karya seni yang dibuat dengan menempelkan berbagai bahan pada permukaan gambar',
@@ -518,7 +530,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Teknik melipat kertas yang menghasilkan bentuk dengan banyak lipatan adalah...',
     options: [
       'Origami kompleks',
@@ -535,7 +547,7 @@ export const questions = [
     type: QUESTION_TYPES.CMC2,
     difficulty: DIFFICULTY_LEVELS.HARD,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING,
+    topic: SBDP_TOPICS.TEKNIK_LIPAT,
     question: 'Pasangkan jenis kertas dengan kesesuaiannya untuk seni:',
     leftOptions: [
       'Kertas origami',
@@ -563,7 +575,7 @@ export const questions = [
     type: QUESTION_TYPES.MC,
     difficulty: DIFFICULTY_LEVELS.EASY,
     subject: SUBJECTS.REGULAR.SBDP.id,
-    topic: SUBJECTS.REGULAR.SBDP.topics.WEAVING,
+    topic: SBDP_TOPICS.ANYAMAN,
     question: 'Anyaman yang rapat dan kuat cocok digunakan untuk membuat...',
     options: [
       'Tas belanja',
@@ -578,9 +590,14 @@ export const questions = [
 
 // Additional metadata for learning tracking
 export const topicDistribution = {
-  [SUBJECTS.REGULAR.SBDP.topics.WEAVING]: 10,        // ~33%
-  [SUBJECTS.REGULAR.SBDP.topics.THREE_D]: 10,       // ~33% 
-  [SUBJECTS.REGULAR.SBDP.topics.PAPER_FOLDING]: 10   // ~33%
+  [SBDP_TOPICS.ANYAMAN]: 10,            // ~33%
+  [SBDP_TOPICS.SENI_TIGA_DIMENSI]: 10,  // ~33% 
+  [SBDP_TOPICS.TEKNIK_LIPAT]: 10,       // ~33%
+  [SBDP_TOPICS.BAHAN_ALAM]: 0,          // 0%
+  [SBDP_TOPICS.SENI_RUPA]: 0,           // 0%
+  [SBDP_TOPICS.SENI_MUSIK]: 0,          // 0%
+  [SBDP_TOPICS.SENI_TARI]: 0,           // 0%
+  [SBDP_TOPICS.SENI_TEATER]: 0          // 0%
 };
 
 // Question type distribution
